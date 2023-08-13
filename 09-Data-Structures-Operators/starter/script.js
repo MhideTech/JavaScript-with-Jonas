@@ -246,14 +246,53 @@ restaurant.orderPizza && restaurant.orderPizza('Mushroom', 'spinach'); // Mushro
 
 
 // The Nullish Coalescing Operator => ES2020
+/*
+
 restaurant.numGuest =  0;
 const guests = restaurant.numGuest || 10;
 console.log(guests);
 
-// Nullish = only return false if value is null or undefined (NOT 0 or '')
+// Nullish = only return false if first value is null or undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuest ?? 10;
 console.log(guestCorrect);
 
+*/
 
+
+// Logical Assignment Operator => ES2021
+// Creating two restaurant object
+const rest1 = {
+  name: 'Fadob Mall',
+  // numGuests: 20,
+  numGuests: 0,
+}
+
+const rest2 = {
+  name: 'Jendol',
+  owner: 'Jendola Rick'
+}
+
+// OR assignment operator
+// Setting default number of guest for each rest incase they dont exist (Old way)
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// Introducing the OR Logical Assignment Operator to set the default values (Better way)
+// rest1.numGuests ||= 10; // prints 20 if numGuest = 20 and 10 if numGuest = 0 cause it is OR and 0 is falsy
+// rest2.numGuests ||= 10; // prints 10 cause it is undefined
+
+// Nullish assignment operator
+rest1.numGuests ??= 10; 
+rest2.numGuests ??= 10; 
+console.log(rest1) // prints 0 if numGuest = 0 and 20 if numGuest = 20
+console.log(rest2) // prints 10 cause it is undefined
+
+// AND assignment operator
+// Setting anonymous as the new owner for the restaurant that already have an owner
+// AND operator assigns a value to a variable if it is truthy
+rest1.owner &&= "Anonymous";
+rest2.owner &&= "Anonymous";
+console.log(rest1)
+console.log(rest2)
 
 
