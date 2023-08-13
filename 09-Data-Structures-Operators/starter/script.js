@@ -214,6 +214,8 @@ restaurant.orderPizza("Mushroom", "Onions", "Olives", "Spinach");
 
 
 // Short Circuting (&& and ||)
+/*
+
 // Short circuting in case of || operator returns the first value as long as it is a truthy value
 console.log(`--- OR ---`);
 console.log(3 || 'Jonas');  // 3
@@ -240,12 +242,21 @@ if(restaurant.orderPizza){
 
 restaurant.orderPizza && restaurant.orderPizza('Mushroom', 'spinach'); // Mushroom, [spinach]
 
+*/
 
 
+// The Nullish Coalescing Operator => ES2020
+/*
 
+restaurant.numGuest =  0;
+const guests = restaurant.numGuest || 10;
+console.log(guests);
 
+// Nullish = only return false if value is null or undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuest ?? 10;
+console.log(guestCorrect);
 
-
+*/
 
 
 
