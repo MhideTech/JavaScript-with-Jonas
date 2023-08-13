@@ -246,8 +246,6 @@ restaurant.orderPizza && restaurant.orderPizza('Mushroom', 'spinach'); // Mushro
 
 
 // The Nullish Coalescing Operator => ES2020
-/*
-
 restaurant.numGuest =  0;
 const guests = restaurant.numGuest || 10;
 console.log(guests);
@@ -255,8 +253,6 @@ console.log(guests);
 // Nullish = only return false if value is null or undefined (NOT 0 or '')
 const guestCorrect = restaurant.numGuest ?? 10;
 console.log(guestCorrect);
-
-*/
 
 
 
