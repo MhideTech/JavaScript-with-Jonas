@@ -303,7 +303,7 @@ console.log(rest2)
 
 
 // Coding Challenge
-
+/*
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -380,7 +380,24 @@ printGoals(...game.scored);
 team1 < team2 && console.log('Team 1 is more likely to win');
 team1 > team2 && console.log('Team 2 is more likely to win');
 
+*/
 
 
+// For-of Loop => ES6
+
+// Creating an array of all menu 4rm restaurant object
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// Looping over the menu array using regular for loop
+for(let i = 0; i < menu.length; i++) console.log(menu[i]);
+
+// Looping over the array using for of loop
+for (const item of menu) console.log(item)
+
+// Getting the current value plus index of an item in an array using for of loop
+for (const item of menu.entries()) console.log(item)
+
+// Destructuring the items in the array
+for (const [i, el] of menu.entries()) console.log(`${i + 1} : ${el}`)
 
 
