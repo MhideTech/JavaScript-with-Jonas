@@ -13,6 +13,8 @@ const restaurant = {
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
   // Needed for destructuring Objects
+  // Enhanced Object Literals 1:
+  // We can move this openingHours outside of the restaurant object and just reference it inside this object using just the property name
   openingHours: {
     thu: {
       open: 12,
@@ -28,13 +30,15 @@ const restaurant = {
     },
   },
 
+  // Enhanced Object Literals 2:
+  // We can remove the function keyword away from every property that is a function and still work as a function (e.g. orderDelivery && orderPizza)
   // Used in Destructuing Array
   order: function(starterIndex, mainIndex){
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
   },
 
   // Used in destructuring objects
-  orderDelivery: function({starterIndex = 1, mainIndex = 0, time = "20:00", address}){
+  orderDelivery({starterIndex = 1, mainIndex = 0, time = "20:00", address}){
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}, will be delivered to ${address} at ${time}`
     );
@@ -46,7 +50,7 @@ const restaurant = {
   },
 
   // Used in Rest Pattern and Parameters
-  orderPizza: function(mainIngredients, ...otherIngredients){
+  orderPizza(mainIngredients, ...otherIngredients){
     console.log(mainIngredients);
     console.log(otherIngredients);
   }
@@ -384,6 +388,7 @@ team1 > team2 && console.log('Team 2 is more likely to win');
 
 
 // For-of Loop => ES6
+/*
 
 // Creating an array of all menu 4rm restaurant object
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -399,5 +404,15 @@ for (const item of menu.entries()) console.log(item)
 
 // Destructuring the items in the array
 for (const [i, el] of menu.entries()) console.log(`${i + 1} : ${el}`)
+
+*/
+
+
+// Enhanced Object Literals
+/*
+
+// Ref to restaurant object
+
+*/
 
 
