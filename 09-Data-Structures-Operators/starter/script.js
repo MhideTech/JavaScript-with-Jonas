@@ -33,27 +33,29 @@ const restaurant = {
   // Enhanced Object Literals 2:
   // We can remove the function keyword away from every property that is a function and still work as a function (e.g. orderDelivery && orderPizza)
   // Used in Destructuing Array
-  order: function(starterIndex, mainIndex){
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
   // Used in destructuring objects
-  orderDelivery({starterIndex = 1, mainIndex = 0, time = "20:00", address}){
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}, will be delivered to ${address} at ${time}`
     );
   },
 
   // Used in Spread Operator
-  orderPasta: function(ing1, ing2, ing3){
-    console.log(`Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
   },
 
   // Used in Rest Pattern and Parameters
-  orderPizza(mainIngredients, ...otherIngredients){
+  orderPizza(mainIngredients, ...otherIngredients) {
     console.log(mainIngredients);
     console.log(otherIngredients);
-  }
+  },
 };
 
 // Destructuring Arrays => ES 6
@@ -101,7 +103,6 @@ console.log(p, q, r); // replace any unknown or undefined variable with a value 
 
 */
 
-
 // Destructuring Objects
 /*
 
@@ -131,7 +132,6 @@ restaurant.orderDelivery({time: '2:30', address: '#1, Joju B/Stop', mainIndex: 2
 restaurant.orderDelivery({address: '#70, Sango Ota',  starterIndex: 1})
 
 */
-
 
 // The Spread Operator
 /*
@@ -183,7 +183,6 @@ console.log(newRestaurant);
 
 */
 
-
 // Rest Pattern and Parameters
 /*
 
@@ -218,7 +217,6 @@ restaurant.orderPizza("Mushroom", "Onions", "Olives", "Spinach");
 
 */
 
-
 // Short Circuting (&& and ||)
 /*
 
@@ -250,7 +248,6 @@ restaurant.orderPizza && restaurant.orderPizza('Mushroom', 'spinach'); // Mushro
 
 */
 
-
 // The Nullish Coalescing Operator => ES2020
 /*
 
@@ -263,7 +260,6 @@ const guestCorrect = restaurant.numGuest ?? 10;
 console.log(guestCorrect);
 
 */
-
 
 // Logical Assignment Operator => ES2021
 /*
@@ -304,7 +300,6 @@ console.log(rest1)
 console.log(rest2)
 
 */
-
 
 // Coding Challenge
 /*
@@ -386,7 +381,6 @@ team1 > team2 && console.log('Team 2 is more likely to win');
 
 */
 
-
 // For-of Loop => ES6
 /*
 
@@ -407,14 +401,12 @@ for (const [i, el] of menu.entries()) console.log(`${i + 1} : ${el}`)
 
 */
 
-
 // Enhanced Object Literals
 /*
 
 // Ref to restaurant object
 
 */
-
 
 // Optional Chaining = > ES2020
 /*
@@ -450,8 +442,6 @@ console.log(users[0]?.name ?? 'User array empty')
 
 */
 
-
-
 // Looping Object: Object keys, values and entries
 /*
 
@@ -477,9 +467,9 @@ for(const [key, {open, close}] of entries){
 
 */
 
-
-
 // Sets => ES6
+/*
+
 // A set is a collection of unique values
 
 // Creating a new set with an iterable (array) as an argument
@@ -515,5 +505,37 @@ const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
 const staffUnique = [...new Set(staff)];
 console.log(staffUnique);
 
+*/
 
+// Maps Fundamentals
+// A map is a data structure that we can use to map values to keys
 
+// Creating a restaurant map
+const rest = new Map();
+
+// Adding elements to the data structure
+rest.set('name', 'Fadob Mall');
+rest.set(1, 'Church Str. Alaso');
+rest.set(2, 'Toll-gate, Sango');
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+// Retriving elements from a map
+console.log(rest.get('name'));
+console.log(rest.get(1));
+console.log(rest.get(true));
+
+// Using conditions inside a map
+const time = 8; // may change
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// Checking if an object is present inside a map
+console.log(rest.has('categories'));
+
+// Deleting an object from a map
+rest.delete(2)
+console.log(rest)
