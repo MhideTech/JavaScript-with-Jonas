@@ -416,3 +416,36 @@ for (const [i, el] of menu.entries()) console.log(`${i + 1} : ${el}`)
 */
 
 
+// Optional Chaining = > ES2020
+
+// Assume we want to read the opening hour of monday from the restaurant object which does not exist
+// console.log(restaurant.openingHours.mon.open); // We get error Message (cannot read properties of undefined)
+
+// Using an if statement to check
+if(restaurant.openingHours && restaurant.openingHours.mon) console.log(restaurant.openingHours.mon.open) // does not print anything cause it does not exist
+
+// Using optional chaining to solve the first prob
+console.log(restaurant.openingHours.mon?.open); // only if the property b4 d ? exist then the open property will be read else it'll return undefined rather than an error message
+console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  // console.log(day);
+  const open =
+    restaurant.openingHours[day]?.open ?? 'closed';
+    console.log(`On ${day}, we open at ${open}`);
+}
+
+// Using optional chaining on methods
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist');
+
+
+// Using optional chaining on arrays
+const users = [{name: 'Ola', email: 'ola@gmail.com'}];
+
+console.log(users[0]?.name ?? 'User array empty')
+
+
+
