@@ -417,6 +417,7 @@ for (const [i, el] of menu.entries()) console.log(`${i + 1} : ${el}`)
 
 
 // Optional Chaining = > ES2020
+/*
 
 // Assume we want to read the opening hour of monday from the restaurant object which does not exist
 // console.log(restaurant.openingHours.mon.open); // We get error Message (cannot read properties of undefined)
@@ -447,5 +448,27 @@ const users = [{name: 'Ola', email: 'ola@gmail.com'}];
 
 console.log(users[0]?.name ?? 'User array empty')
 
+*/
 
 
+
+// Looping Object: Object keys, values and entries
+// Accessing each property name from the openingHours object
+const properties = Object.keys(restaurant.openingHours);
+console.log(properties)
+let openStr = `We are open on ${properties.length} days: `;
+for(const day of properties){
+  openStr += `${day},`
+}
+console.log(openStr)
+
+// Accessing each property value from the openingHours object
+const value = Object.values(restaurant.openingHours);
+console.log(value)
+
+// Accessing entire object i.e. openingHours object
+const entries = Object.entries(restaurant.openingHours);
+console.log(entries);
+for(const [key, {open, close}] of entries){
+  console.log( `On ${key}, we open at ${open} and close at ${close}`)
+}
