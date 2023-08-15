@@ -453,6 +453,8 @@ console.log(users[0]?.name ?? 'User array empty')
 
 
 // Looping Object: Object keys, values and entries
+/*
+
 // Accessing each property name from the openingHours object
 const properties = Object.keys(restaurant.openingHours);
 console.log(properties)
@@ -472,3 +474,46 @@ console.log(entries);
 for(const [key, {open, close}] of entries){
   console.log( `On ${key}, we open at ${open} and close at ${close}`)
 }
+
+*/
+
+
+
+// Sets => ES6
+// A set is a collection of unique values
+
+// Creating a new set with an iterable (array) as an argument
+const ordersSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto', 'Pasta', 'Pizza']);
+console.log(ordersSet); // all duplicates gone
+
+// Checking the size of the set
+console.log(ordersSet.size);
+
+// Checking if a particular item is present in a set
+console.log(ordersSet.has("Pizza"));
+console.log(ordersSet.has("Bread"));
+
+// Adding new element to a set
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+console.log(ordersSet);
+
+// Deleting an item from a set
+ordersSet.delete("Risotto");
+console.log(ordersSet);
+
+// Deleting all item from a set
+// ordersSet.clear();
+
+// Looping over a set
+for(const order of ordersSet){
+  console.log(order);
+}
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+
+
+
