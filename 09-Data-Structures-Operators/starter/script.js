@@ -588,6 +588,7 @@ console.log([...question.values()]) // to convert all values or items in the obj
 
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
+/*
 
 // Indexing characters at certain index of the string
 console.log(plane[0]);
@@ -616,3 +617,42 @@ checkMiddleSeat('11B');
 checkMiddleSeat('23C');
 checkMiddleSeat('3E');
 
+*/
+
+
+// Working with Strings Part 2
+
+// Changing case of strings
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization in name
+const passenger = 'oLaMIde';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// Replacing strings
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+// Replacing all occurence using regular expression
+const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
+console.log(announcement.replace('door', 'gate')); // changes  only first occurence
+console.log(announcement.replace(/door/g, 'gate')); // changes all occurence - /g means global
+
+// Practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard!');
+  }
+};
+
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
