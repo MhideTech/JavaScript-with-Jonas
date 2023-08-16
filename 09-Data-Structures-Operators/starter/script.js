@@ -545,6 +545,8 @@ console.log(rest)
 */
 
 // Maps Iteration
+/*
+
 const question = new Map([
   ['question', 'What is the best programming language in the world?'],
   [1, 'C'],
@@ -578,3 +580,39 @@ console.log(question.get(question.get('correct') === answer));
 console.log([...question])
 console.log([...question.keys()]) // to convert all keys in the object
 console.log([...question.values()]) // to convert all values or items in the object
+
+*/
+
+
+// Working with Strings Part 1
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+// Indexing characters at certain index of the string
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[3]);
+
+// Determining the length of strings
+console.log(airline.length);
+console.log('B737'.length);
+
+// Using methods on strings
+console.log(airline.indexOf('r')); // first occurence
+console.log(airline.lastIndexOf ('r')); // last occurence
+console.log(airline.indexOf('Portugal')); // checking the occuring index of a word
+console.log(airline.slice(4))
+console.log(airline.slice(4, 7)) // end index is not included
+
+// Writing a function to check if a seat is in the middle of an airplane
+const checkMiddleSeat = (seat) => {
+  const s = seat.slice(-1);
+  if(s === 'B' || s === 'E') console.log('You got the middle seat');
+  else console.log('You got lucky');
+}
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
