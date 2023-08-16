@@ -508,6 +508,8 @@ console.log(staffUnique);
 */
 
 // Maps Fundamentals
+/*
+
 // A map is a data structure that we can use to map values to keys
 
 // Creating a restaurant map
@@ -539,3 +541,40 @@ console.log(rest.has('categories'));
 // Deleting an object from a map
 rest.delete(2)
 console.log(rest)
+
+*/
+
+// Maps Iteration
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct'],
+  [false, 'Try again']
+]);
+console.log(question)
+
+// Converting Object to maps
+// restaurant.openingHours is an object buh Object.entries returns an array
+console.log(Object.entries(restaurant.openingHours)); // logging the whole openingHours object to d console as an array
+// Real conversion of object to map
+const hoursMap = new Map(Object.entries(restaurant.openingHours));
+console.log(hoursMap); // Now we have the openingHours object as a map
+
+// Using iteration to print the options from the question map to the console
+console.log(question.get('question'));
+for(const [key, value] of question){
+  // Printing elements that has its key to be a number
+  if(typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+// const answer = Number(prompt('Enter your answer'));
+const answer = 3;
+console.log(question.get(question.get('correct') === answer));
+
+// Convert map to array
+console.log([...question])
+console.log([...question.keys()]) // to convert all keys in the object
+console.log([...question.values()]) // to convert all values or items in the object
