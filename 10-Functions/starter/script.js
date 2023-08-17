@@ -24,8 +24,9 @@ console.log(bookings);
 */
 
 
-
 // How Passing Arguments Works: Values vs. Reference
+/*
+
 const flight = 'LH234';
 const jonas = {
   name: 'Jonas Schmedtmann',
@@ -57,3 +58,42 @@ const newPassport = function (person) {
 
 newPassport(jonas);
 // checkIn(flight, jonas);
+
+*/
+
+
+// Functions Accepting Callback Functions
+// Creating a function to remove all spaces in a string
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+// Creating a function to capitalize the first word in a string
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// Higher Order Functions
+// Creating a function to pass in function as an argument to a function
+// The function called is known as Higher Order Function
+// The function passed in a function is known as call-back function
+const transformer = function(str, fn){
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+  console.log(`Transformed by ${fn.name}`)
+}
+
+transformer('JavaScript is the best', upperFirstWord);
+transformer('JavaScript is the best', oneWord);
+
+// Another Example
+// Passing function as an argument to an eventListener function
+const high5 = function(){
+  console.log('👋');
+}
+document.body.addEventListener('click', high5);
+
+// Passing the function as to be executed for an array
+['Jonas', 'Martha', 'John'].forEach(high5);
+
