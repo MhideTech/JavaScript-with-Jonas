@@ -63,6 +63,8 @@ newPassport(jonas);
 
 
 // Functions Accepting Callback Functions
+/*
+
 // Creating a function to remove all spaces in a string
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
@@ -97,3 +99,23 @@ document.body.addEventListener('click', high5);
 // Passing the function as to be executed for an array
 ['Jonas', 'Martha', 'John'].forEach(high5);
 
+*/
+
+
+// Functions Returning Functions
+const greet = function(greeting){
+  return function(name){
+    console.log(`${greeting} ${name}`)
+  }
+}
+
+const greeter = greet('Hey');
+greeter('Jonas')
+greeter('Orlah')
+
+// Another method to call the functions
+greet('Happy Birthday')('Mhizta Orlah');
+
+const greet2 = greeting2 => (name2) => console.log(`${greeting2} ${name2}`)
+
+greet2('Omo')('Oba');
