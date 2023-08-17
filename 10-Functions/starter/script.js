@@ -103,6 +103,8 @@ document.body.addEventListener('click', high5);
 
 
 // Functions Returning Functions
+/*
+
 const greet = function(greeting){
   return function(name){
     console.log(`${greeting} ${name}`)
@@ -119,3 +121,51 @@ greet('Happy Birthday')('Mhizta Orlah');
 const greet2 = greeting2 => (name2) => console.log(`${greeting2} ${name2}`)
 
 greet2('Omo')('Oba');
+
+*/
+
+
+// The Call and Apply Methods
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name){
+    console.log(`${name} booked a seat on ${this.airline} flights ${this.iataCode}${flightNum}`);
+    this.bookings.push({flight: `${this.iataCode}${flightNum}`, name});
+  }
+}
+
+lufthansa.book(239, 'Okefolahan Olamide');
+lufthansa.book(239, 'Mhizta Orlah');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+}
+
+const book = lufthansa.book;
+// Does not work, cannot read properties of undefined due 2 d this keyword
+// book(23, 'Sarah Williams')
+
+// Call Method
+book.call(eurowings, '001', "Okefolahan Olamide");
+console.log(eurowings);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+}
+book.call(swiss, '001', 'Okefolahan Olamide');
+
+// Apply method
+// The apply method works the same like as the call but takes in array as an argument after the object the this keyword points to
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+// Using the array on the call method by using the spread operator to spread the values in the array like normal variables
+book.call(swiss, ...flightData);
