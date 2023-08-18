@@ -169,3 +169,48 @@ console.log(swiss);
 
 // Using the array on the call method by using the spread operator to spread the values in the array like normal variables
 book.call(swiss, ...flightData);
+
+
+// The Bind Method
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven Williams');
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Jonas Schmedtmann');
+bookEW23('Martha Cooper');
+
+// Using the Bind Method with Event Listeners
+// Setting a new property for the lufthansa object
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+
+  // prints NaN cause in an event handler function, the this keyword always points to the element on which the handler is attached to (i.e. button element) in this case
+  console.log(this.planes); 
+}
+// calling the function out here sets the this keyword to lufthansa unlike when the this keyword was a button element
+// lufthansa.buyPlane();
+
+// Using the bind method to set the this keyword to the lufthansa object
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Using the bind method with Partial Applications i.e. setting default parameter
+// Creating an addTax function
+const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// Creating a function to add a predefined rate of tax to any amount passed as an argument
+const addVAT = addTax.bind(null, 0.23);
+// addVAT looks like = addVAT = addTax + addTax * 0.23
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+const addVAT2 = (rate2) => value2 => value2 + value2 * rate2;
+console.log(addVAT2(0.23)(100));
+console.log(addVAT2(0.23)(23));
+
+
