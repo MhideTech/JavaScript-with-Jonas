@@ -124,6 +124,8 @@ greet2('Omo')('Oba');
 
 */
 
+// The Call, Apply and Bind Methods
+/*
 
 // The Call and Apply Methods
 const lufthansa = {
@@ -213,4 +215,38 @@ const addVAT2 = (rate2) => value2 => value2 + value2 * rate2;
 console.log(addVAT2(0.23)(100));
 console.log(addVAT2(0.23)(23));
 
+*/
+
+// CODING CHALLENGE 1
+const poll = {
+  question: 'What is your favorite programming language?',
+  options: ['0: Javascript', '1: Python', '2: Rust', '3: C++'],
+  answers: new Array(4).fill(0),
+  displayResult(type = 'array'){
+    if(type === 'array'){
+      console.log(`${this.answers}`)
+    } else if(type === 'string'){
+      console.log(`Poll results are ${this.answers.join(', ')}`);
+    }
+  },
+  registerNewAnswer(){
+    const answer = Number(prompt(`${this.question} \n ${this.options.join('\n')}\n(Write Option Number)`));
+    console.log(this.options[answer])
+      
+    if(answer < this.options.length){
+      (this.answers[answer] += 1);
+    }
+      
+    this.displayResult('string');
+  }
+}
+
+const pollBtn = document.querySelector('.poll');
+pollBtn.addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+const testData1 = [5, 2, 3];
+const testData2 = [1, 5, 3, 9, 6, 1];
+
+poll.displayResult.call({answers : testData1}, 'string');
+poll.displayResult.call({answers : testData2});
 
