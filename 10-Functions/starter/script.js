@@ -239,7 +239,7 @@ const poll = {
       
     this.displayResult('string');
   }
-}
+} 
 
 const pollBtn = document.querySelector('.poll');
 pollBtn.addEventListener('click', poll.registerNewAnswer.bind(poll));
