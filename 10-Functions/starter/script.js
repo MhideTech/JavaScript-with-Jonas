@@ -218,6 +218,8 @@ console.log(addVAT2(0.23)(23));
 */
 
 // CODING CHALLENGE 1
+/*
+
 const poll = {
   question: 'What is your favorite programming language?',
   options: ['0: Javascript', '1: Python', '2: Rust', '3: C++'],
@@ -250,3 +252,23 @@ const testData2 = [1, 5, 3, 9, 6, 1];
 poll.displayResult.call({answers : testData1}, 'string');
 poll.displayResult.call({answers : testData2});
 
+*/
+
+
+// Immediately Invoked Function Expression
+// Creating a normal function that can run as many times as possible 
+const runOnce = function(){
+  console.log(`This function can run multiple times`);
+}
+runOnce();
+
+// Creating a function that will only run once
+(
+  function(){
+    console.log(`This will never run again`);
+  }
+)();
+// enclosing the function in parenthesis makes JS thinks it is an expression
+
+// Creating an II Arrow Function
+(() => console.log(`This will ALSO never run again`))();
