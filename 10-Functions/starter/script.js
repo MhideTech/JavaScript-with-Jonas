@@ -256,6 +256,8 @@ poll.displayResult.call({answers : testData2});
 
 
 // Immediately Invoked Function Expression
+/*
+
 // Creating a normal function that can run as many times as possible 
 const runOnce = function(){
   console.log(`This function can run multiple times`);
@@ -272,3 +274,28 @@ runOnce();
 
 // Creating an II Arrow Function
 (() => console.log(`This will ALSO never run again`))();
+
+*/
+
+
+// Closures
+// We dont create closures manually likewise do we explicitly use them. It simply happens in some certain situations in which is what we need to recognize
+// A closure makes a function remember all the variables that existed at the function's birthplace
+// Closures
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
