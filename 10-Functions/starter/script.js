@@ -281,7 +281,10 @@ runOnce();
 // Closures
 // We dont create closures manually likewise do we explicitly use them. It simply happens in some certain situations in which is what we need to recognize
 // A closure makes a function remember all the variables that existed at the function's birthplace
-// Closures
+// Any function always has access to its variable environment of the execution context in which the function was created
+// Closures is a variable environment attached to a function, exactly as it was at the time and place the function was created
+// The booker function has access to the passengerCount variable because it is defined in the scope where it is created
+
 const secureBooking = function () {
   let passengerCount = 0;
 
@@ -319,7 +322,7 @@ const h = function () {
 };
 
 g();
-f();
+f(); // 46
 console.dir(f);
 
 // Re-assigning f function
@@ -341,3 +344,14 @@ const boardPassengers = function (n, wait) {
 
 const perGroup = 1000;
 boardPassengers(180, 3);
+
+// CODING CHALLENGE 2
+(function(){
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  const body = document.querySelector('body');
+  body.addEventListener('click', function(){
+    header.style.color = 'blue';
+    console.log('Already clicked')
+  })
+})();
