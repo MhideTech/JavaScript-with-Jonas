@@ -74,3 +74,38 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+
+// Simple Array Methods
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// SLICE
+console.log(arr.slice(2)); // slices and print items from index 2 to the last element in the array
+console.log(arr.slice(2, 4)); // slices and print items from index 2 to index 4 but not including item at index 4
+console.log(arr.slice(-2)); // slices and print the last two items in the array
+console.log(arr.slice(-1)); // slices and print the last item in the array
+console.log(arr.slice(1, -2)); // slices out the end point and print the remaining items from d starting index
+console.log(arr.slice()); // prints out the whole items in the array
+console.log([...arr]); // using the spread operator to print out the items in the array
+
+// SPLICE
+// Splice method on array is mutable
+// console.log(arr.splice(2)); // slices out the items from index 2 and prints the rest
+arr.splice(-1); // slices out the last item in the array and prints the rest
+console.log(arr);
+arr.splice(1, 2); 
+console.log(arr); // slices out the items from index 1 to index 2 including index 2
+
+// REVERSE
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse()); // reverses items in the array making the last index the first and the first the last
+console.log(arr2);
+
+// CONCAT
+const letters = arr.concat(arr2); // concatenate the two arrays together
+console.log(letters);
+console.log([...arr, ...arr2]);
+
+// JOIN
+console.log(letters.join(' - ')); // print a string-like text with an hypen between every items in the array
