@@ -71,7 +71,7 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -116,6 +116,8 @@ console.log(letters.join(' - ')); // print a string-like text with an hypen betw
 
 
 // The new at Method
+/*
+
 const arr = [23, 11, 64];
 console.log(arr[0]);
 console.log(arr.at(0));
@@ -127,3 +129,30 @@ console.log(arr.at(-1));
 
 console.log('jonas'.at(0));
 console.log('jonas'.at(-1));
+
+*/
+
+
+// forEach Loop over Arrays
+// forOf vs forEachLoop
+// For the forOf Loop,  while using .entries(), first element is the index while second is the value
+// Continue and break statement works with forEach loop
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+for(const [i, movement] of movements.entries()){
+  if(movement > 0){
+    console.log(`Movement ${i + 1} You deposited ${movement}`)
+  } else{
+    console.log(`Movement ${i + 1} You withdrew ${Math.abs(movement)}`)
+  }
+}
+
+console.log(`----- forEach Loop ------`)
+// For the forEach Loop, arguments are passed in order of element, index and array
+// Continue and break statement do not work with forEach loop
+movements.forEach(function(movement, i, arr){
+  if (movement > 0) {
+    console.log(`Movement ${i + 1} You deposited ${movement}`);
+  } else {
+    console.log(`Movement ${i + 1} You withdrew ${Math.abs(movement)}`);
+  }
+})
