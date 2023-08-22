@@ -61,6 +61,25 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const displayMovements = function(movement){
+  containerMovements.innerHTML = '';
+
+  movement.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+        <div class="movements__value">${mov}</div>
+    </div>
+    `;
+
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+}
+
+displayMovements(account1.movements)
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -157,6 +176,8 @@ movements.forEach(function(movement, i, arr){
 
 
 // ForEach Loop with Maps and Sets
+/*
+
 // With Map
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -175,4 +196,6 @@ currenciesUnique.forEach(function(value, _, map){
   console.log(`${value}: ${value}`) // we get USD: USD reason becuase sets dont have keys and indexes either
   // So we need to change the name of the key variable which in this case is an underscore which means a throwaway or unnecessary variable
 })
+
+*/
 
