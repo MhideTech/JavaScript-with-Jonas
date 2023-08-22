@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Creating a function to display the movement of transactions
 const displayMovements = function(movement){
   containerMovements.innerHTML = '';
 
@@ -199,3 +200,19 @@ currenciesUnique.forEach(function(value, _, map){
 
 */
 
+// Coding Challenge #1
+
+const checkDogs = function(dogsJulia, dogsKate){
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+  const dogs =  [...dogsJuliaCorrected, ...dogsKate]
+  dogs.forEach(function(dog, i){
+    const dogAge = dog >= 3 ? 'an adult' : 'a puppy 🐶';
+    console.log(`Dog number ${i+1} is ${dogAge} and is ${dogs[i]} years old`)
+  })
+
+}
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
+console.log('.');
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
