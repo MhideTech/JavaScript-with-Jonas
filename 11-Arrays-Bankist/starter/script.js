@@ -65,12 +65,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
@@ -134,6 +128,8 @@ console.log('jonas'.at(-1));
 
 
 // forEach Loop over Arrays
+/*
+
 // forOf vs forEachLoop
 // For the forOf Loop,  while using .entries(), first element is the index while second is the value
 // Continue and break statement works with forEach loop
@@ -156,3 +152,27 @@ movements.forEach(function(movement, i, arr){
     console.log(`Movement ${i + 1} You withdrew ${Math.abs(movement)}`);
   }
 })
+
+*/
+
+
+// ForEach Loop with Maps and Sets
+// With Map
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach(function(value, key, map){
+  console.log(`${key}: ${value}`);
+})
+
+// With Sets
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function(value, _, map){
+  console.log(`${value}: ${value}`) // we get USD: USD reason becuase sets dont have keys and indexes either
+  // So we need to change the name of the key variable which in this case is an underscore which means a throwaway or unnecessary variable
+})
+
