@@ -77,8 +77,20 @@ const displayMovements = function(movement){
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 }
-
 displayMovements(account1.movements)
+
+// Creating a function the generate a login initial(username) from the owner's name
+const createUsernames =(accs) => {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+    .toLowerCase()
+    .split(' ')
+    .map((name) => name.charAt(0))
+    .join('');
+  })
+}
+createUsernames(accounts);
+console.log(accounts)
 
 
 /////////////////////////////////////////////////
@@ -222,6 +234,8 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 
 // The Map Method
+/*
+
 // map method returns a new array containing the results of applying an operation on all original array elements
 // Converting euro to usd assuming 1eur = 1.1usd
 const eurToUsd = 1.1;
@@ -239,3 +253,5 @@ const movementsDescriptions = movements.map((move, i) =>
   `Movement ${i + 1}: You ${move > 0 ? 'deposited' : 'withdrew'} ${Math.abs(move)}`
 );
 console.log(movementsDescriptions);
+
+*/
