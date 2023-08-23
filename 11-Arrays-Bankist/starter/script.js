@@ -79,6 +79,14 @@ const displayMovements = function(movement){
 }
 displayMovements(account1.movements)
 
+
+// Creating a calc & Display balance function
+const calcDisplayBalance = function(movements){
+  labelBalance.textContent = `${movements.reduce((acc, cur) => acc + cur, 0)} EUR`;
+}
+calcDisplayBalance(account1.movements)
+
+
 // Creating a function the generate a login initial(username) from the owner's name
 const createUsernames =(accs) => {
   accs.forEach(function (acc) {
@@ -90,6 +98,7 @@ const createUsernames =(accs) => {
   })
 }
 createUsernames(accounts);
+
 
 
 /////////////////////////////////////////////////
@@ -257,6 +266,8 @@ console.log(movementsDescriptions);
 
 
 // The filter Method
+/*
+
 const deposits = movements.filter(function (mov, i, arr) {
   return mov > 0;
 });
@@ -269,3 +280,33 @@ console.log(depositsFor);
 
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
+
+*/
+
+
+// The Reduce Method
+console.log(movements)
+
+// Summing up all the movements in an array
+// Using normal function expression
+/* const balance = movements.reduce(function(acc, cur, i, arr){
+  console.log(`Iteration ${i}: ${acc}`)
+  return acc + cur;
+}, 0); */
+
+// Using arrow function
+const balance = movements.reduce((acc, cur,) => acc + cur, 0);
+console.log(balance);
+
+// Using for Of Loop
+let bal = 0;
+for(const mov of movements) bal += mov;
+console.log(bal)
+
+// Another Example
+// Getting Maximum value
+// Always go with the first item in the array whenever youre trying to find a max or min value
+const maxValue = movements.reduce((acc, cur) => 
+  cur > acc ? acc = cur : acc = acc, movements[0]
+)
+console.log(maxValue);
