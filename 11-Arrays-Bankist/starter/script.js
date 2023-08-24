@@ -69,8 +69,10 @@ const displayMovements = function(movement){
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
-      <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__value">${mov}</div>
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+        <div class="movements__value">${mov}€</div>
     </div>
     `;
 
@@ -82,9 +84,20 @@ displayMovements(account1.movements)
 
 // Creating a calc & Display balance function
 const calcDisplayBalance = function(movements){
-  labelBalance.textContent = `${movements.reduce((acc, cur) => acc + cur, 0)} EUR`;
+  labelBalance.textContent = `${movements.reduce((acc, cur) => acc + cur, 0)}€`;
 }
 calcDisplayBalance(account1.movements)
+
+// Creating a function to add all transactions
+const calcDisplaySummary = function(movements){
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`
+  const withdrawals = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(withdrawals)}€`;
+  const interest = movements.filter(mov => mov > 0).map(deposit => (1.2 * deposit) / 100).filter(int => int >= 1).reduce((acc, cur) => acc + cur, 0);
+  labelSumInterest.textContent = `${interest}€`;
+}
+calcDisplaySummary(account1.movements)
 
 
 // Creating a function the generate a login initial(username) from the owner's name
@@ -317,6 +330,8 @@ console.log(maxValue);
 
 
 // Coding Challenge #2
+/*
+
 const calcAverageHumanAge = function(dogAges){
   const humanAge = dogAges.map((age) => age > 2 ? 16 + age * 4 : age * 2);
   const adult = humanAge.filter((age) => age > 18);
@@ -328,3 +343,20 @@ const calcAverageHumanAge = function(dogAges){
 }
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+*/
+
+
+// The Magic of Chaining Methods
+const eurToUsd = 1.1;
+console.log(movements);
+
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  // .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
