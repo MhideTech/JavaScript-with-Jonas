@@ -285,14 +285,16 @@ console.log(withdrawals);
 
 
 // The Reduce Method
+/*
+
 console.log(movements)
 
 // Summing up all the movements in an array
 // Using normal function expression
-/* const balance = movements.reduce(function(acc, cur, i, arr){
-  console.log(`Iteration ${i}: ${acc}`)
-  return acc + cur;
-}, 0); */
+// const balance = movements.reduce(function(acc, cur, i, arr){
+//   console.log(`Iteration ${i}: ${acc}`)
+//   return acc + cur;
+// }, 0); 
 
 // Using arrow function
 const balance = movements.reduce((acc, cur,) => acc + cur, 0);
@@ -305,8 +307,24 @@ console.log(bal)
 
 // Another Example
 // Getting Maximum value
-// Always go with the first item in the array whenever youre trying to find a max or min value
+// Always use the first item in the array as the starting point whenever youre trying to find a max or min value
 const maxValue = movements.reduce((acc, cur) => 
   cur > acc ? acc = cur : acc = acc, movements[0]
 )
 console.log(maxValue);
+
+*/
+
+
+// Coding Challenge #2
+const calcAverageHumanAge = function(dogAges){
+  const humanAge = dogAges.map((age) => age > 2 ? 16 + age * 4 : age * 2);
+  const adult = humanAge.filter((age) => age > 18);
+  const average = adult.reduce((acc, cur) => acc + cur) / adult.length;
+  
+  console.log(humanAge);
+  console.log(adult);
+  console.log(average)
+}
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
