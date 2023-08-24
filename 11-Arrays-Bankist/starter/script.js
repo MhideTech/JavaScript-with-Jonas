@@ -348,6 +348,8 @@ calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 
 
 // The Magic of Chaining Methods
+/*
+
 const eurToUsd = 1.1;
 console.log(movements);
 
@@ -360,3 +362,15 @@ const totalDepositsUSD = movements
   // .map(mov => mov * eurToUsd)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
+
+*/
+
+
+// Coding Challenge #3
+const calcAverageHumanAge2 = function (dogAges) {
+  const humanAge = dogAges.map(age => (age > 2 ? 16 + age * 4 : age * 2)).filter(age => age > 18).reduce((acc, cur, i,arr) => acc + cur / arr.length, 0)
+
+  console.log(humanAge);
+};
+calcAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanAge2([16, 6, 10, 5, 6, 1, 4]);
