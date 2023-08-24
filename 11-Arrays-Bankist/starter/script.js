@@ -367,6 +367,8 @@ console.log(totalDepositsUSD);
 
 
 // Coding Challenge #3
+/*
+
 const calcAverageHumanAge2 = function (dogAges) {
   const humanAge = dogAges.map(age => (age > 2 ? 16 + age * 4 : age * 2)).filter(age => age > 18).reduce((acc, cur, i,arr) => acc + cur / arr.length, 0)
 
@@ -374,3 +376,21 @@ const calcAverageHumanAge2 = function (dogAges) {
 };
 calcAverageHumanAge2([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge2([16, 6, 10, 5, 6, 1, 4]);
+
+*/
+
+
+// The Find Method
+// The find methods return the first value of which a certain condition is true
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+// Using for of loop to get the same result
+for(const accoun of accounts){
+  if (accoun.owner === 'Jessica Davis'){
+    console.log(accoun)
+  }
+}
