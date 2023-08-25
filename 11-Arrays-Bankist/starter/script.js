@@ -82,8 +82,9 @@ const displayMovements = function(movement){
 
 
 // Creating a calc & Display balance function
-const calcDisplayBalance = function(movements){
-  labelBalance.textContent = `${movements.reduce((acc, cur) => acc + cur, 0)}€`;
+const calcDisplayBalance = function(acc){
+  acc.balance = `${acc.movements.reduce((acc, cur) => acc + cur, 0)}€`;
+  labelBalance.textContent = acc.balance;
 }
 
 // Creating a function to add all transactions
@@ -109,6 +110,18 @@ const createUsernames =(accs) => {
 }
 createUsernames(accounts);
 
+// Creating a function to update the UI
+const updateUI = function(acc){
+  // Display movement
+  displayMovements(acc.movements);
+
+  // Display balance
+  calcDisplayBalance(acc);
+
+  // Display Summary
+  calcDisplaySummary(acc);
+}
+
 // Implementing Login
 let currentAccount;
 btnLogin.addEventListener('click', function(e){
@@ -128,18 +141,11 @@ btnLogin.addEventListener('click', function(e){
     inputLoginPin.value = '';
     inputLoginPin.blur();
     
-    // Display movement
-    displayMovements(currentAccount.movements);
-    
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-    
-    // Display Summary
-    calcDisplaySummary(currentAccount);
+    // Update UI
+    updateUI(currentAccount);
   }
   
 })
-
 
 
 /////////////////////////////////////////////////
