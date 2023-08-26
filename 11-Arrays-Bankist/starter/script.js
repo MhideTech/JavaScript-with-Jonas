@@ -165,6 +165,22 @@ btnTransfer.addEventListener('click', function(e){
 
 })
 
+// Delete Account
+btnClose.addEventListener('click', function(e){
+  e.preventDefault();
+
+  if(currentAccount.username == inputCloseUsername.value && currentAccount.pin === Number(inputClosePin.value)){
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+
+    inputClosePin.value = '';
+    inputCloseUsername.value = '';
+  }
+})
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
