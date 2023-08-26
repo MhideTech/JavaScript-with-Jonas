@@ -72,7 +72,7 @@ const displayMovements = function(movement){
       <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${Math.abs(mov)}€</div>
+        <div class="movements__value">${mov}€</div>
     </div>
     `;
 
@@ -83,8 +83,8 @@ const displayMovements = function(movement){
 
 // Creating a calc & Display balance function
 const calcDisplayBalance = function(acc){
-  acc.balance = `${acc.movements.reduce((acc, cur) => acc + cur, 0)}€`;
-  labelBalance.textContent = acc.balance;
+  acc.balance = acc.movements.reduce((acc, cur) => acc + cur, 0);
+  labelBalance.textContent = `${acc.balance}€`;
 }
 
 // Creating a function to add all transactions
@@ -147,6 +147,23 @@ btnLogin.addEventListener('click', function(e){
   
 })
 
+// Transfer to Other Accounts
+btnTransfer.addEventListener('click', function(e){
+  e.preventDefault();
+
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+
+  if(amount > 0 && receiverAcc && currentAccount.balance >= amount && receiverAcc?.username !== currentAccount.username){
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    updateUI(currentAccount);
+  }
+
+  inputTransferAmount.value = '';
+  inputTransferTo.value = '';
+
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
