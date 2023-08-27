@@ -165,6 +165,22 @@ btnTransfer.addEventListener('click', function(e){
 
 })
 
+// Request Loan
+btnLoan.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = ''
+})
+
 // Delete Account
 btnClose.addEventListener('click', function(e){
   e.preventDefault();
@@ -467,3 +483,20 @@ for(const accoun of accounts){
 */
 
 
+// The Some and Every Method
+console.log(movements);
+
+// Some Method
+// The some method returns true if any of the element met the required condition
+
+// The INCLUDES method check for EQUALITY
+console.log(movements.includes(-130));
+
+// The SOME method checks for CONDITIONS
+console.log(movements.some(mov => mov === -130));
+console.log(movements.some(mov => mov > 0));
+
+// Every Method
+// The Every method returns true if all elements meet the required condition
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
