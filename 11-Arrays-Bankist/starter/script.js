@@ -62,17 +62,16 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Creating a function to display the movement of transactions
-const displayMovements = function(movement){
+const displayMovements = function(movements, sort = false){
   containerMovements.innerHTML = '';
+  const movs  = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
-  movement.forEach((mov, i) => {
+  movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
-      <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+      <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+      <div class="movements__value">${mov}€</div>
     </div>
     `;
 
@@ -195,6 +194,15 @@ btnClose.addEventListener('click', function(e){
     inputClosePin.value = '';
     inputCloseUsername.value = '';
   }
+})
+
+let sorted = false;
+btnSort.addEventListener('click', function(e){
+  e.preventDefault();
+
+  displayMovements(currentAccount.movements, !sorted);
+  // Changes the state of sorted each time it is clicked i.e. true - false and false - true
+  sorted = !sorted;
 })
 
 /////////////////////////////////////////////////
@@ -507,6 +515,8 @@ console.log(account4.movements.every(mov => mov > 0));
 
 
 // flat and flatMap
+/*
+
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
 
@@ -526,3 +536,38 @@ const overalBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overalBalance2);
 
+*/
+
+
+// Sorting Arrays
+// Strings
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners);
+console.log(owners.sort());
+
+// Numbers
+console.log(movements);
+// Sorting the movements array in ascending order
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+})
+console.log(movements)
+
+// Sorting the movements array in descending order
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  // if (a < b) return 1;
+})
+console.log(movements)
+
+// Modifying the sort method
+// Ascending
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// Descending
+movements.sort((a, b) => b - a);
+console.log(movements);
+// Note: negative value switches the current element if the element before it is > it
+// It is not advisable to use the sort method on arrays containing strings and numbers
