@@ -540,6 +540,8 @@ console.log(overalBalance2);
 
 
 // Sorting Arrays
+/*
+
 // Strings
 const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
 console.log(owners);
@@ -571,3 +573,36 @@ movements.sort((a, b) => b - a);
 console.log(movements);
 // Note: negative value switches the current element if the element before it is > it
 // It is not advisable to use the sort method on arrays containing strings and numbers
+
+*/
+
+
+// More ways of creating and filling arrays
+// Old ways
+const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// Filling an empty array
+const x = new Array(7); // creates an empty array with length of 7
+console.log(x)
+// console.log(x.fill(1)); // fill the array with a value of 1
+// console.log(x.fill(2, 3)) // fills the array with a value of 2 starting from index 3 and creates an empty array from index 0 - 2
+console.log(x.fill(2, 2, 5)) // fills the array with 2 starting from index 2 and ends at index 5 but not include 5 just like slice
+
+// Filling an existing array
+arr.fill(23, 3, 6)
+console.log(arr)
+
+// Creating array programmatically
+const y = Array.from({length: 7}, () => 1);
+console.log(y);
+
+const z = Array.from({length: 7}, (_, i) => i + 1);
+console.log(z);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+});
