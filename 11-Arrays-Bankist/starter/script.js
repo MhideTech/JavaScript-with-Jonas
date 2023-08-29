@@ -578,6 +578,8 @@ console.log(movements);
 
 
 // More ways of creating and filling arrays
+/*
+
 // Old ways
 const arr = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -606,3 +608,20 @@ labelBalance.addEventListener('click', function () {
   );
   console.log(movementsUI);
 });
+
+*/
+
+
+// Array Methods Practice
+// 1. Summing all the deposit movements in all accounts
+const bankDepositSum = accounts.flatMap(acc => acc.movements).filter(mov => mov > 0).reduce((acc, cur) => acc+cur);
+console.log(bankDepositSum)
+
+// Counting the number of deposits > 1000 in the movement array across all accounts
+// Method 1
+const numDeposits1000 = accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000).length;
+console.log(numDeposits1000);
+
+// Method 2 (Using reduce method)
+const num2Deposits1000 = accounts.flatMap(acc => acc.movements).reduce((count, cur) => cur >= 1000 ? count + 1 : count, 0);
+console.log(num2Deposits1000);
