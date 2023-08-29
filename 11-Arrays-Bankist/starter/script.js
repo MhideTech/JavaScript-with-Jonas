@@ -231,10 +231,10 @@ console.log([...arr]); // using the spread operator to print out the items in th
 // SPLICE
 // Splice method on array is mutable
 // console.log(arr.splice(2)); // slices out the items from index 2 and prints the rest
-arr.splice(-1); // slices out the last item in the array and prints the rest
+arr.splice(-1); // slices out and prints the last item in the array
 console.log(arr);
 arr.splice(1, 2); 
-console.log(arr); // slices out the items from index 1 to index 2 including index 2
+console.log(arr); // slices and print out the items from index 1 to index 2 including index 2
 
 // REVERSE
 arr = ['a', 'b', 'c', 'd', 'e'];
@@ -617,7 +617,7 @@ labelBalance.addEventListener('click', function () {
 const bankDepositSum = accounts.flatMap(acc => acc.movements).filter(mov => mov > 0).reduce((acc, cur) => acc+cur);
 console.log(bankDepositSum)
 
-// Counting the number of deposits > 1000 in the movement array across all accounts
+//2. Counting the number of deposits > 1000 in the movement array across all accounts
 // Method 1
 const numDeposits1000 = accounts.flatMap(acc => acc.movements).filter(mov => mov >= 1000).length;
 console.log(numDeposits1000);
@@ -625,3 +625,11 @@ console.log(numDeposits1000);
 // Method 2 (Using reduce method)
 const num2Deposits1000 = accounts.flatMap(acc => acc.movements).reduce((count, cur) => cur >= 1000 ? count + 1 : count, 0);
 console.log(num2Deposits1000);
+
+// 3. Adding the total deposits and withdraws across all accounts in a new object
+const sums = accounts.flatMap(acc => acc.movements).reduce((sums, cur) =>{
+  sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+  // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+  return sums;
+}, {deposits: 0, withdrawals: 0})
+console.log(sums)
