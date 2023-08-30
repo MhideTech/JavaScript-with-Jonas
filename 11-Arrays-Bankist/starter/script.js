@@ -668,3 +668,12 @@ dogs.forEach(dog => dog.recFood =  Math.trunc(dog.weight ** 0.75 * 28))
 // Number 2
 const sarahDog = dogs.find(dog => dog.owners.includes("Sarah"))
 console.log(`Sarah dog is eating too ${sarahDog.curFood > sarahDog.recFood ? 'much' : 'little'}`)
+
+// Number 3
+const ownersEatTooMuch = dogs.filter(dog => dog.curFood > dog.recFood).flatMap(dog => dog.owners);
+const ownersEatTooLittle = dogs.filter(dog => dog.curFood < dog.recFood).flatMap(dog => dog.owners);
+console.log(ownersEatTooMuch, ownersEatTooLittle)
+
+// Number 4
+console.log( `${ownersEatTooMuch.join(' and ')}'s dog eats too much`)
+console.log( `${ownersEatTooLittle.join(' and ')}'s dog eats too little`)
