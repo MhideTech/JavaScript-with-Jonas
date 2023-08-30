@@ -677,3 +677,9 @@ console.log(ownersEatTooMuch, ownersEatTooLittle)
 // Number 4
 console.log( `${ownersEatTooMuch.join(' and ')}'s dog eats too much`)
 console.log( `${ownersEatTooLittle.join(' and ')}'s dog eats too little`)
+
+// Number 5
+console.log(`${dogs.some(dog => dog.curFood === dog.recFood)}`)
+
+// Number 6
+console.log(`${dogs.some(dog => dog.curFood >= (0.1 * dog.recFood) && dog.curFood <= (0.1 * dog.recFood))}`)
