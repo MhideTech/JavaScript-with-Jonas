@@ -613,6 +613,8 @@ labelBalance.addEventListener('click', function () {
 
 
 // Array Methods Practice
+/*
+
 // 1. Summing all the deposit movements in all accounts
 const bankDepositSum = accounts.flatMap(acc => acc.movements).filter(mov => mov > 0).reduce((acc, cur) => acc+cur);
 console.log(bankDepositSum)
@@ -648,3 +650,21 @@ const convertTitleCase = function(title){
 console.log(convertTitleCase('this is a nice title'));
 console.log(convertTitleCase('this is a LONG title but not too long'));
 console.log(convertTitleCase('and here is another title with an EXAMPLE'));
+
+*/
+
+
+// Coding Challenge #4
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+
+// Number 1
+dogs.forEach(dog => dog.recFood =  Math.trunc(dog.weight ** 0.75 * 28))
+
+// Number 2
+const sarahDog = dogs.find(dog => dog.owners.includes("Sarah"))
+console.log(`Sarah dog is eating too ${sarahDog.curFood > sarahDog.recFood ? 'much' : 'little'}`)
