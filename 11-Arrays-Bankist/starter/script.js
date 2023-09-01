@@ -684,3 +684,6 @@ console.log(`${dogs.some(dog => dog.curFood === dog.recFood)}`)
 // Number 6
 const checkEatingOkay = dog => dog.curFood >= 0.9 * dog.recFood && dog.curFood <= 1.1 * dog.recFood;
 console.log(dogs.some(checkEatingOkay));
+
+// Number 7
+console.log(dogs.filter(checkEatingOkay));
