@@ -360,6 +360,7 @@ labelBalance.addEventListener('click', function () {
 
 
 // Numeric Separators
+/*
 
 // 287,460,000,000
 const diameter = 287_460_000_000;
@@ -376,3 +377,39 @@ console.log(PI); // cant use after or before decimal point and the number itself
 
 console.log(Number('230_000')); // cant use with the number method (returns NaN)
 console.log(parseInt('230_000')); // returns only the number before the separator
+
+*/
+
+
+// Working with BigInt
+console.log(2 ** 53 - 1); // how to calculate highest safe number
+console.log(Number.MAX_SAFE_INTEGER); // JS method that tells the highest safe number
+console.log(2 ** 53 + 1); // Examples:::
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(4838430248342043823408394839483204n); // logging a bigInt to the console with the n suffix
+console.log(BigInt(48384302)); // logging a bigInt to the console using the BigInt method
+
+// Operations
+console.log(10000n + 10000n); // performing mathematical operations on bigInt Values
+console.log(36286372637263726376237263726372632n * 10000000n);
+// console.log(Math.sqrt(16n)); // Math methods dont work on BigInt numbers
+
+const huge = 20289830237283728378237n;
+const num = 23;
+// console.log(huge * num);  // cannot add BigInt with normal numbers (throws an error message)
+console.log(huge * BigInt(num)); // unless the number is then converted to a BigInt explicitly
+
+// Exceptions associated with BigInt
+console.log(20n > 15); // true
+console.log(20n == 20); // true
+console.log(20n === 20); // false i.e. they are not the same datatype
+console.log(typeof 20n); // bigint
+
+console.log(huge + ' is REALLY big!!!') // huge has already been converted to a number without the n suffix
+
+console.log(10n / 3n); // returns 3n which is the nearest big integer
+console.log(12n / 3n); // returns 4n
+console.log(10 / 3); // returns normal 3.333333333333
