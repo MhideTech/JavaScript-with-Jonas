@@ -687,3 +687,7 @@ console.log(dogs.some(checkEatingOkay));
 
 // Number 7
 console.log(dogs.filter(checkEatingOkay));
+
+// Number 8
+const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+console.log(dogsSorted)
