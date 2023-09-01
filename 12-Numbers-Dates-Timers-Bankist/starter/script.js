@@ -328,6 +328,8 @@ console.log(+(2.745).toFixed(2)); // converting string to number
 
 
 // The Remainder Operator
+/*
+
 console.log(5 % 2);
 console.log(5 / 2); // 5 = 2 * 2 + 1
 
@@ -353,3 +355,24 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue';
   });
 });
+
+*/
+
+
+// Numeric Separators
+
+// 287,460,000,000
+const diameter = 287_460_000_000;
+console.log(diameter); // print out the number normally
+
+const price = 345_99;
+console.log(price);
+
+const transferFee1 = 15_00; // looks like a decimal
+const transferFee2 = 1_500; // looks like a thousand separator
+
+const PI = 3.1415;
+console.log(PI); // cant use after or before decimal point and the number itself
+
+console.log(Number('230_000')); // cant use with the number method (returns NaN)
+console.log(parseInt('230_000')); // returns only the number before the separator
