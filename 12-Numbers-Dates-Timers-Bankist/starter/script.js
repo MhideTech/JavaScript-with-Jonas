@@ -413,3 +413,11 @@ console.log(huge + ' is REALLY big!!!') // huge has already been converted to a 
 console.log(10n / 3n); // returns 3n which is the nearest big integer
 console.log(12n / 3n); // returns 4n
 console.log(10 / 3); // returns normal 3.333333333333
+
+
+// Creating Dates
+
+// Create a date
+
+const now = new Date();
+console.log(now);
