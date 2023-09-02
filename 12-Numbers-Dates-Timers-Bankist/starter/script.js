@@ -421,3 +421,8 @@ console.log(10 / 3); // returns normal 3.333333333333
 
 const now = new Date();
 console.log(now);
+
+console.log(new Date('Aug 02 2020 18:05:41'));
+console.log(new Date('December 24, 2015'));
+console.log(new Date(account1.movementsDates[0]));
+
