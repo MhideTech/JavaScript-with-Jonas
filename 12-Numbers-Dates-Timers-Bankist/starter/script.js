@@ -382,6 +382,8 @@ console.log(parseInt('230_000')); // returns only the number before the separato
 
 
 // Working with BigInt
+/*
+
 console.log(2 ** 53 - 1); // how to calculate highest safe number
 console.log(Number.MAX_SAFE_INTEGER); // JS method that tells the highest safe number
 console.log(2 ** 53 + 1); // Examples:::
@@ -414,6 +416,7 @@ console.log(10n / 3n); // returns 3n which is the nearest big integer
 console.log(12n / 3n); // returns 4n
 console.log(10 / 3); // returns normal 3.333333333333
 
+*/
 
 // Creating Dates
 
