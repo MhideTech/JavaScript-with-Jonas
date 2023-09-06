@@ -420,6 +420,8 @@ console.log(10 / 3); // returns normal 3.333333333333
 
 // Creating Dates
 
+/*
+
 // Create a date
 
 const now = new Date();
@@ -435,3 +437,4 @@ console.log(new Date(2037, 10, 31));
 console.log(new Date(0));
 console.log(new Date(3 * 24 * 60 * 60 * 1000));
 
+*/
