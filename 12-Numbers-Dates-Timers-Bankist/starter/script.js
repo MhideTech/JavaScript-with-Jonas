@@ -186,14 +186,41 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function(){
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // In each call, print the remaining time to the UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When timer = 0s, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = `Login to get started`;
+    }
+
+    // Decrease 1s
+    time--;
+  };
+
+  // Sets the time to 5 mins
+  let time = 120;
+  
+  
+  // Call the timer every second
+  const timer = setInterval(tick, 1000);
+  return timer;
+}
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -243,6 +270,9 @@ btnLogin.addEventListener('click', function (e) {
       options
     ).format(now);
 
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -270,6 +300,10 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
 
+    // Reset Timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -287,6 +321,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Add loan date
       currentAccount.movementsDates.push(new Date().toISOString());
+
+      // Reset Timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
 
       // Update UI
       updateUI(currentAccount);
