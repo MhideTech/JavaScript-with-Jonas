@@ -629,3 +629,4 @@ setInterval(function () {
   // console.log(now);
 }, 1000);
 
+// It was amazing designing bankist web application with Jonas
