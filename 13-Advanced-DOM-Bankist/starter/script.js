@@ -60,5 +60,5 @@ header.append(message); // append the element as the last in the parent element.
 // Deleting Elements
 document.querySelector('.btn--close-cookie').addEventListener('click', function(){
   // message.remove(); // new way
-  message.parentElement.removeChild(message);
+  message.parentElement.removeChild(message); 
 })
