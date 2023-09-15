@@ -7,12 +7,14 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
-}; 
+};
 
 const closeModal = function () {
   modal.classList.add('hidden');
@@ -30,9 +32,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-
 // Selecting, Creating and Deleting Elements
-
+/*
 // Selecting Elements
 console.log(document.documentElement); // selects the entire html element <html></html>
 console.log(document.head); // selects the head element <head></head>
@@ -63,8 +64,10 @@ document.querySelector('.btn--close-cookie').addEventListener('click', function(
   message.parentElement.removeChild(message); 
 })
 
+*/
 
 // Styles, Attributes and Classes
+/*
 
 // Styles
 // Note: 
@@ -115,3 +118,45 @@ logo.classList.add('c', 'j');
 logo.classList.remove('c', 'j');
 logo.classList.toggle('c', 'j');
 logo.classList.contains('c', 'j');
+
+*/
+
+// Implementing Smooth Scrolling
+// BoundingClientRect is relative to the visible viewport of the browser
+btnScrollTo.addEventListener('click', function (e) {
+  // Getting the coordinates of section 1
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  // Getting the coordinates of the button i.e. Learn more
+  console.log(e.target.getBoundingClientRect());
+
+  // Getting the amount of pixels `scrolled` away from the left and top of the browser
+  console.log('Current scroll (X/Y): ', window.pageXOffset, window.pageYOffset);
+
+  // Getting the current height and width of the browser
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // Now implementing Scrolling
+  // We add the amount of pixels scrolled away + the distance of section1 to the top of the browser
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // Now implementing Smooth Scrolling
+  // OLD WAY/METHOD
+  // We pass in our cordinates in an object
+  window.scrollTo({
+    left: s1coords.left + window.pageXOffset,
+    top: s1coords.top + window.pageYOffset,
+    behavior: 'smooth',
+  });
+
+  // NEW WAY
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
