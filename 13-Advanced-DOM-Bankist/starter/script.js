@@ -189,6 +189,8 @@ setTimeout(() => {
 */
 
 // Event Propagation, Bubbling and Capturing
+/*
+
 // Note; Capturing is listening to event as it is coming down to the target from the DOM
 // Bubbling is listening to event as it is going back to the DOM when it reaches the target i.e. on every parent element
 const randomInt = (min, max) =>
@@ -210,3 +212,26 @@ document.querySelector(".nav").addEventListener('click', function(e){
   this.style.backgroundColor = randomColor();
   console.log("NAV", e.target, e.currentTarget);
 });
+
+*/
+
+// Event Delegation: Implementing Page Navigation
+// Old Method
+/* document.querySelectorAll('.nav__link').forEach(el =>
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    const id = this.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  })
+); */
+
+// New Method: Using Event Propagation
+// 1. Add event listener to the common parent element
+// 2. Determine what element originated the event
+document.querySelector(".nav__links").addEventListener('click', function(e){
+  e.preventDefault();
+  if(e.target.classList.contains("nav__link")){
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+})
