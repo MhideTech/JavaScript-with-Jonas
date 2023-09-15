@@ -62,3 +62,56 @@ document.querySelector('.btn--close-cookie').addEventListener('click', function(
   // message.remove(); // new way
   message.parentElement.removeChild(message); 
 })
+
+
+// Styles, Attributes and Classes
+
+// Styles
+// Note: 
+// 1. styles created on an element in js always inline styles
+// 2. We cannot log styles from a css file or that are not defined to the console except with getComputedStyle
+message.style.backgroundColor = "#37383d";
+message.style.width = "110%";
+console.log(message.style.height); // undefined
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message)); // log all css styles applicable to this element to the console
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height); // height was not defined but the browser needed to calculate it
+
+// Changing CSS values from CSS :root
+console.log(document.documentElement.style.setProperty("--color-primary", "orangered"));
+
+
+// Attributes
+// Attributes that are not meant to be on an element would not be read by js if present in html
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src); // get absolute source
+console.log(logo.getAttribute("src")); // get relative source
+console.log(logo.className); // prints the class name of the element to d console
+
+console.log(logo.designer); // Not valid .: designer is not a valit attribute
+console.log(logo.getAttribute("designer")); // Method to get it
+
+// Setting value for an html element attribute
+logo.alt = 'Beautiful Minimalist Logo'
+console.log(logo.alt);
+
+// Setting a new attribute to an html element
+logo.setAttribute('company', 'Bankist');
+
+// Attributes on Links (<a></a>)
+const link = document.querySelector(".nav__link--btn");
+console.log(link.href); // absolute
+console.log(link.getAttribute("href")); // relative
+
+// Data Attributes
+console.log(logo.dataset.versionNumber);
+
+
+// Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c', 'j');
+logo.classList.contains('c', 'j');
