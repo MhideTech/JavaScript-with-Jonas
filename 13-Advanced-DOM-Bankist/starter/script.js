@@ -122,6 +122,8 @@ logo.classList.contains('c', 'j');
 */
 
 // Implementing Smooth Scrolling
+/*
+
 // BoundingClientRect is relative to the visible viewport of the browser
 btnScrollTo.addEventListener('click', function (e) {
   // Getting the coordinates of section 1
@@ -160,3 +162,24 @@ btnScrollTo.addEventListener('click', function (e) {
   // NEW WAY
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+*/
+
+// Types of Event and Event Handlers
+let h1 = document.querySelector('h1');
+const alertH1 = function () {
+  alert('addEventListener: You are reading the heading :D');
+
+  // Remove event listener at this point allows the event to happen just once
+  h1.removeEventListener('mouseenter', alertH1);
+};
+h1.addEventListener('mouseenter', alertH1);
+
+// Method 2
+h1.onmouseenter = function () {
+  alert('mouseenter: You are reading the heading :D');
+};
+
+setTimeout(() => {
+  h1.removeEventListener('mouseenter', alertH1);
+}, 3000);
