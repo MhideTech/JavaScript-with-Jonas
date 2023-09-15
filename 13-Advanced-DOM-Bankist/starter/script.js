@@ -71,7 +71,7 @@ document.querySelector('.btn--close-cookie').addEventListener('click', function(
 
 // Styles
 // Note: 
-// 1. styles created on an element in js always inline styles
+// 1. styles created on an element in js are always inline styles
 // 2. We cannot log styles from a css file or that are not defined to the console except with getComputedStyle
 message.style.backgroundColor = "#37383d";
 message.style.width = "110%";
@@ -166,6 +166,8 @@ btnScrollTo.addEventListener('click', function (e) {
 */
 
 // Types of Event and Event Handlers
+/*
+
 let h1 = document.querySelector('h1');
 const alertH1 = function () {
   alert('addEventListener: You are reading the heading :D');
@@ -183,3 +185,28 @@ h1.onmouseenter = function () {
 setTimeout(() => {
   h1.removeEventListener('mouseenter', alertH1);
 }, 3000);
+
+*/
+
+// Event Propagation, Bubbling and Capturing
+// Note; Capturing is listening to event as it is coming down to the target from the DOM
+// Bubbling is listening to event as it is going back to the DOM when it reaches the target i.e. on every parent element
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+const randomColor = () => `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+document.querySelector(".nav__link").addEventListener('click', function(e){
+  this.style.backgroundColor = randomColor();
+  console.log("LINK", e.target, e.currentTarget);
+
+  // Stop Propagation
+  // e.stopPropagation();
+});
+document.querySelector(".nav__links").addEventListener('click', function(e){
+  this.style.backgroundColor = randomColor();
+  console.log("CONTAINER", e.target, e.currentTarget);
+});
+document.querySelector(".nav").addEventListener('click', function(e){
+  this.style.backgroundColor = randomColor();
+  console.log("NAV", e.target, e.currentTarget);
+});
