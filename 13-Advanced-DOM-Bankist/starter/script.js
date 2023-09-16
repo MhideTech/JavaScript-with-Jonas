@@ -216,6 +216,8 @@ document.querySelector(".nav").addEventListener('click', function(e){
 */
 
 // Event Delegation: Implementing Page Navigation
+/*
+
 // Old Method
 /* document.querySelectorAll('.nav__link').forEach(el =>
   el.addEventListener('click', function (e) {
@@ -223,7 +225,7 @@ document.querySelector(".nav").addEventListener('click', function(e){
     const id = this.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   })
-); */
+); 
 
 // New Method: Using Event Propagation
 // 1. Add event listener to the common parent element
@@ -235,3 +237,32 @@ document.querySelector(".nav__links").addEventListener('click', function(e){
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 })
+
+*/
+
+// DOM Traversing
+const h1 = document.querySelector('h1');
+
+// Going downwards: child
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes); // list every single different thing present inside the h1 element
+console.log(h1.children); // list every single different elements present inside d h1
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// Going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+h1.closest('.header').style.background = 'var(--gradient-secondary)'; // style the closest element with the class name of header
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+console.log(h1.parentElement.children); // accessing all the sibling element through the parent
+[...h1.parentElement.children].forEach(el => {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
+
