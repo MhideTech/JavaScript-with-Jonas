@@ -473,8 +473,12 @@ window.addEventListener('load', function(e){
 })
 
 // An event listener that triggers a confirmation modal if the user want to leave or reload the web page
-window.addEventListener("beforeunload", function(e){
-  e.preventDefault();
-  console.log(e)
-  e.returnValue = '';
-})
+// window.addEventListener("beforeunload", function(e){
+//   e.preventDefault();
+//   console.log(e)
+//   e.returnValue = '';
+// })
+
+
+// Efficient Script Loading
+// Parsing an HTML means building the DOM tree from the HTML elements
