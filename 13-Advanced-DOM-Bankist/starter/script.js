@@ -454,3 +454,27 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'ArrowRight') nextSlide();
   e.key === 'ArrowLeft' && prevSlide(); // short circuting
 });
+
+
+// Lifecycle DOM Event
+
+// 1. DOM content loaded
+// It is fired by d document as soon as d HTML is completely parsed i.e. downloaded and converted to DOM tree
+// All script must be downloaded and executed before d DOM content loaded can happen
+
+// An event listener that triggers whenever the Html file has been parsed while being loaded
+document.addEventListener('DOMContentLoaded', function(e){
+  console.log("HTML Parsed and DOM Tree Built!", e);
+})
+
+// An event listener that triggers some block of code whenever the page is being fully loaded
+window.addEventListener('load', function(e){
+  console.log("Page fully loaded", e);
+})
+
+// An event listener that triggers a confirmation modal if the user want to leave or reload the web page
+window.addEventListener("beforeunload", function(e){
+  e.preventDefault();
+  console.log(e)
+  e.returnValue = '';
+})
