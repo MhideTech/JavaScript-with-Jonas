@@ -388,31 +388,69 @@ imgTargets.forEach(img => {
   imgObserver.observe(img);
 });
 
-
 // Building a slider component part 1
 
-const slides = document.querySelectorAll(".slide");
-const btnLeft = document.querySelector(".slider__btn--left");
-const btnRight = document.querySelector(".slider__btn--right");
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
 let curSlide = 0;
 
-const goToSlide = function(slide){
+const dotContainer = document.querySelector('.dots');
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+      );
+    });
+};
+createDots();
+  
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    const slide = e.target.dataset.slide;
+    goToSlide(slide);
+    activateDot(slide);
+  }
+});
+
+const activateDot = function (slide) {
+  document
+    .querySelectorAll('.dots__dot')
+    .forEach(dot => dot.classList.remove('dots__dot--active'));
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add('dots__dot--active');
+};
+activateDot(0);
+
+const goToSlide = function (slide) {
   slides.forEach((s, i) => {
     s.style.transform = `translate(${100 * (i - slide)}%)`;
-  })
-}
-goToSlide(0)
+  });
+};
+goToSlide(0);
 
-const nextSlide = function(){
-  (curSlide === slides.length - 1) ? curSlide = 0 : curSlide++;
-  goToSlide(curSlide)
-}
+const nextSlide = function () {
+  curSlide === slides.length - 1 ? (curSlide = 0) : curSlide++;
+  goToSlide(curSlide);
+  activateDot(curSlide);
+};
 
 const prevSlide = function () {
   curSlide === 0 ? (curSlide = slides.length - 1) : curSlide--;
   goToSlide(curSlide);
+  activateDot(curSlide);
 };
 
-btnRight.addEventListener("click", nextSlide)
-btnLeft.addEventListener("click", prevSlide)
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
 
+// Building a slider component part 2
+
+// Handling keyboard event
+document.addEventListener('keydown', function (e) {
+  // console.log(e);
+  if (e.key === 'ArrowRight') nextSlide();
+  e.key === 'ArrowLeft' && prevSlide(); // short circuting
+});
