@@ -12,3 +12,26 @@
 // All objects in JS are linked to a certain prototype object
 // Prototypal Inheritance: All objects that are linked to a certain prototype object can use the method & properties that are defined on that prototype
 
+
+// Construtor function and the new keyword Operator
+const Person = function(firstName, birthYear){
+    // Instance Properties
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+
+    // Never to do this
+    this.calcAge = function(){
+        console.log(2037 - birthYear);
+    }
+}
+
+// What happens when we call a function with the new keyword operator
+// 1. New {} is created
+// 2. function is called, this = {} (i.e. this keyword points to the newly created {})
+// 3. {} is linked to prototype
+// 4. function automatically returns {}
+
+const jonas = new Person('Jonas', 1991);
+const matilda = new Person('Matilda', 2017);
+const orlah = new Person('Orlah', 2004);
+console.log(jonas, matilda, orlah);
