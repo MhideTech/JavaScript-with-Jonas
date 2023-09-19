@@ -20,9 +20,9 @@ const Person = function(firstName, birthYear){
     this.birthYear = birthYear;
 
     // Never to do this
-    this.calcAge = function(){
-        console.log(2037 - birthYear);
-    }
+    // this.calcAge = function(){
+    //     console.log(2037 - birthYear);
+    // }
 }
 
 // What happens when we call a function with the new keyword operator
@@ -35,3 +35,28 @@ const jonas = new Person('Jonas', 1991);
 const matilda = new Person('Matilda', 2017);
 const orlah = new Person('Orlah', 2004);
 console.log(jonas, matilda, orlah);
+
+// Prototypes
+Person.prototype.calcAge = function(){
+   console.log(2037 - this.birthYear);
+}
+
+// Using prototypes on Person objects
+jonas.calcAge();
+orlah.calcAge();
+
+console.log(jonas.__proto__); 
+console.log(jonas.__proto__ === Person.prototype); // true
+
+console.log(Person.prototype.isPrototypeOf(jonas)) // true
+console.log(Person.prototype.isPrototypeOf(matilda)) // true
+console.log(Person.prototype.isPrototypeOf(Person)) // false
+
+// Setting properties to Person using prototype
+Person.prototype.species = "Homo Sapien";
+console.log(jonas.species);
+console.log(orlah);
+
+// hasOwnProperty checks if some properties exist in the class/constructor itself
+console.log(jonas.hasOwnProperty("firstName"))
+console.log(jonas.hasOwnProperty("species"))
