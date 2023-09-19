@@ -60,3 +60,10 @@ console.log(orlah);
 // hasOwnProperty checks if some properties exist in the class/constructor itself
 console.log(jonas.hasOwnProperty("firstName"))
 console.log(jonas.hasOwnProperty("species"))
+
+// Prototype Inheritance and Prototype Chain
+// Person.prototype is not the prototype of Person but of all the object created using the person constructor
+// __proto__ always point the new object's prototype i.e. when used on the instance of the constructor
+// Prototype chain: when an object can look up to its prototype for method & properties
+console.log(Object.prototype);
+console.log(jonas.__proto__)
