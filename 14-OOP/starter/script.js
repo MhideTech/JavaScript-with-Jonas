@@ -97,4 +97,29 @@ console.log(h1.__proto__.__proto__); // and so on an so forth
 
 // Checking the prototype on functions
 // Functions and arrays are also objects .: they have prototypes
-console.dir(x => x + 1) // contain methods we can use on functions in Prototype
+console.dir(x => x + 1) // contain methods  we can use on functions in Prototype
+
+
+// Coding Challenge #1
+const Car = function(make, speed){
+    this.make = make;
+    this.speed = speed;
+}
+
+Car.prototype.accelerate = function(){
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+}
+
+Car.prototype.brake = function(){
+    this.speed -= 5;
+    console.log(`${this.make} is stopping at ${this.speed} km/h`);
+}
+
+const bmw = new Car("BMW", 120);
+const mercedes = new Car("Mercedes", 95);
+
+bmw.accelerate()
+bmw.brake()
+mercedes.accelerate()
+mercedes.brake()
