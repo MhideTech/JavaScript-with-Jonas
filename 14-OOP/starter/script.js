@@ -85,10 +85,10 @@ console.log(arr.__proto__ === Array.prototype); // returns true
 console.log(arr.__proto__.__proto__); // back to having the Object property which points to null afterwards
 
 // Creating a unique array method
-Array.prototype.unique = function(){
-    return [...new Set(this)];
-}
-console.log(arr.unique())
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
 
 // checking the prototype chain of html element
 const h1 = document.querySelector('h1');
@@ -97,73 +97,72 @@ console.log(h1.__proto__.__proto__); // and so on an so forth
 
 // Checking the prototype on functions
 // Functions and arrays are also objects .: they have prototypes
-console.dir(x => x + 1) // contain methods  we can use on functions in Prototype
-
+console.dir(x => x + 1); // contain methods  we can use on functions in Prototype
 
 // Coding Challenge #1
-const Car = function(make, speed){
-    this.make = make;
-    this.speed = speed;
-}
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
 
-Car.prototype.accelerate = function(){
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
-}
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(`${this.make} is going at ${this.speed} km/h`);
+};
 
-Car.prototype.brake = function(){
-    this.speed -= 5;
-    console.log(`${this.make} is stopping at ${this.speed} km/h`);
-}
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(`${this.make} is stopping at ${this.speed} km/h`);
+};
 
-const bmw = new Car("BMW", 120);
-const mercedes = new Car("Mercedes", 95);
+const bmw = new Car('BMW', 120);
+const mercedes = new Car('Mercedes', 95);
 
-bmw.accelerate()
-bmw.brake()
-mercedes.accelerate()
-mercedes.brake()
+bmw.accelerate();
+bmw.brake();
+mercedes.accelerate();
+mercedes.brake();
 
 // ES6 Classes
 // We have class expression and class declaration just like functions
-class PersonCl{
-    constructor(fullName, birthYear){
-        this.fullName = fullName;
-        this.birthYear = birthYear;
-    }
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
 
-    // Instance Method : available on every object/instace of a class
-    // will be on prototype 
-    calcAge(){
-        console.log(2037 - this.birthYear)
-    }
+  // Instance Method : available on every object/instace of a class
+  // will be on prototype
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
 
-    greet(){
-        console.log(`Hey ${this.fullName}`)
-    }
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
 
-    get age(){
-        return 2037 - this.birthYear
-    }
+  get age() {
+    return 2037 - this.birthYear;
+  }
 
-    // Set a property that already exists
-    set fullName(name){
-        if(name.includes(' ')) this._fullName = name;
-        else alert(`${name} is not a full name!`);
-    }
+  // Set a property that already exists
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
 
-    get fullName(){
-        return this._fullName;
-    }
+  get fullName() {
+    return this._fullName;
+  }
 
-    // Static Method : available on the class itself
-    static hey(){
-        console.log(`Hello there 👋👋`);
-        // console.log(this);
-    }
+  // Static Method : available on the class itself
+  static hey() {
+    console.log(`Hello there 👋👋`);
+    // console.log(this);
+  }
 }
 
-const jessica = new PersonCl("Jessica Davis", 1996);
+const jessica = new PersonCl('Jessica Davis', 1996);
 console.log(jessica);
 console.log(jessica.fullName);
 console.log(jessica.age);
@@ -178,55 +177,52 @@ jessica.greet();
 // 2. Classes are first-class citizens i.e. we can pass them into functions and we can return them from functions
 // 3. Classes are executed in strict mode
 
-
 /////////////////////////////////////////////
 // Setters and Getters
 const account = {
-    owner: 'Jonas',
-    movements: [200, 530, 120, 300],
+  owner: 'Jonas',
+  movements: [200, 530, 120, 300],
 
-    get latest() {
-        return this.movements.slice(-1).pop()
-    },
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
 
-    set latest(mov){
-        return this.movements.push(mov)
-    }
-}
+  set latest(mov) {
+    return this.movements.push(mov);
+  },
+};
 
 console.log(account.latest);
 
 account.latest = 50;
 console.log(account.movements);
 
-
 //////////////////////////////////////////
 // Static Methods
 // Static methods are available on the constructor and not on every object from the constructor
-// Example are Number.parseFloat() i.e. it is available on the Number constructor and not on every number 
+// Example are Number.parseFloat() i.e. it is available on the Number constructor and not on every number
 // Methods outside the constructor but inside the class are called INSTANCE METHODS : are available on every object/instance of a class
 // Methods with static keyword prefix are called static methods : are available only on the class itself
-Person.hey = function(){
-    console.log(`Hey there 👋👋`);
-    // console.log(this)
-}
+Person.hey = function () {
+  console.log(`Hey there 👋👋`);
+  // console.log(this)
+};
 
 Person.hey();
 PersonCl.hey();
 
-
 //////////////////////////////////////
 // Object.create
 const PersonProto = {
-    calcAge() {
-        console.log(2037 - this.birthYear)
-    },
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
 
-    init(fullName, birthYear){
-        this.fullName = fullName;
-        this.birthYear = birthYear;
-    }
-}
+  init(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  },
+};
 
 const steven = Object.create(PersonProto);
 console.log(steven); // creates an empty object
@@ -240,3 +236,35 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
+
+////////////////////////////////////////////
+// Coding Challenge #2
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is stopping at ${this.speed} km/h`);
+  }
+
+  get speedUS() {
+    return `${this.speed / 1.6} mi/h`;
+  }
+
+  set speedUS(speed){
+    this.speed =  `${speed * 1.6} km/h`;
+    return this.speed;
+  }
+}
+
+const ford = new CarCl('Ford', 120);
+console.log(ford.speedUS);
