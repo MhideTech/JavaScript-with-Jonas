@@ -132,6 +132,7 @@ class PersonCl{
         this.birthYear = birthYear;
     }
 
+    // Instance Method : available on every object/instace of a class
     // will be on prototype 
     calcAge(){
         console.log(2037 - this.birthYear)
@@ -153,6 +154,12 @@ class PersonCl{
 
     get fullName(){
         return this._fullName;
+    }
+
+    // Static Method : available on the class itself
+    static hey(){
+        console.log(`Hello there 👋👋`);
+        // console.log(this);
     }
 }
 
@@ -191,3 +198,19 @@ console.log(account.latest);
 
 account.latest = 50;
 console.log(account.movements);
+
+
+//////////////////////////////////////////
+// Static Methods
+// Static methods are available on the constructor and not on every object from the constructor
+// Example are Number.parseFloat() i.e. it is available on the Number constructor and not on every number 
+// Methods outside the constructor but inside the class are called INSTANCE METHODS : are available on every object/instance of a class
+// Methods with static keyword prefix are called static methods : are available only on the class itself
+Person.hey = function(){
+    console.log(`Hey there 👋👋`);
+    // console.log(this)
+}
+
+Person.hey();
+PersonCl.hey();
+
