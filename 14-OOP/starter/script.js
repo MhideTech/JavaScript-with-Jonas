@@ -123,3 +123,34 @@ bmw.accelerate()
 bmw.brake()
 mercedes.accelerate()
 mercedes.brake()
+
+// ES6 Classes
+// We have class expression and class declaration just like functions
+class PersonCl{
+    constructor(firstName, birthYear){
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    // will be on prototype 
+    calcAge(){
+        console.log(2037 - this.birthYear)
+    }
+
+    greet(){
+        console.log(`Hey ${this.firstName}`)
+    }
+}
+
+const jessica = new PersonCl("Jessica", 1996);
+console.log(jessica);
+
+// PersonCl.prototype.greet = function(){
+//     console.log(`Hey ${this.firstName}`);
+// }
+jessica.greet();
+
+// Things to Note:
+// 1. Classes are not hoisted i.e. cannot be used before they are called unlike functions
+// 2. Classes are first-class citizens i.e. we can pass them into functions and we can return them from functions
+// 3. Classes are executed in strict mode
