@@ -268,3 +268,39 @@ class CarCl {
 
 const ford = new CarCl('Ford', 120);
 console.log(ford.speedUS);
+
+
+// Inheritance Between "Classes" => Constructor Function
+// Parent Class
+const PersonIn = function(firstName, birthYear){
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+}
+
+PersonIn.prototype.calcAge = function(){
+    console.log(2037 - this.birthYear);
+}
+
+// Child Class
+const Student = function(firstName, birthYear, course){
+    // Inheriting firstName and birthYear from PersonIn class
+    Person.call(this, firstName, birthYear);
+    this.course = course;
+}
+
+// Assigning the prototype of student to be the same as PersonIn.prototype
+Student.prototype = Object.create(PersonIn.prototype);
+
+console.log(Student.__proto__ === PersonIn.prototype);
+
+Student.prototype.introduce = function(){
+    console.log(`My name is ${this.firstName} and I studied ${this.course}`);
+}
+
+const mike = new Student("Mike", 2020, "Computer Science");
+console.log(mike);
+mike.introduce();
+console.log(mike.__proto__);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
