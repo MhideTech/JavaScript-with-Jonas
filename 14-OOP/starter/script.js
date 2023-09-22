@@ -304,3 +304,28 @@ console.log(mike.__proto__);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+
+
+
+/////////////////////////////////////////////
+// Coding Challenge #3
+const EV = function(make, speed, battery){
+    Car.call(this, make, speed);
+    this.battery = battery;
+}
+
+EV.prototype = Object.create(Car.prototype);
+
+EV.prototype.chargeBattery = function(chargeTo){
+    this.battery = chargeTo;
+}
+
+EV.prototype.accelerate = function(){
+    this.speed += 20;
+    this.battery -= 1;
+    console.log(`${this.make} going at ${this.speed} km/h with a charge of ${this.battery}%`);
+}
+const tesla = new EV('Tesla', 120, 23);
+console.log(tesla);
+tesla.chargeBattery(90)
+tesla.accelerate();
