@@ -375,3 +375,43 @@ StudentProto.introduce = function(){
 const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
+
+
+// Another Class Example
+class Account {
+    constructor(owner, currency, pin){
+        this.owner = owner;
+        this.currency = currency;
+        this.pin = pin;
+        this.movements = [];
+        this.locale = navigator.language
+        
+        console.log(`Thanks for opening an account ${this.owner}`)     
+    }
+
+    deposit(value) {
+        this.movements.push(value);
+    }
+
+    withdraw(value){
+        this.deposit(-value);
+    }
+
+    approveLoan(value){
+        return true;
+    }
+
+    requestLoan(value){
+        if(this.approveLoan(value)){
+            this.deposit(value);
+            console.log(`Loan Approved`)
+        }
+    }
+
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111);
+acc1.deposit(500);
+acc1.withdraw(250);
+acc1.requestLoan(2000)
+console.log(acc1);
