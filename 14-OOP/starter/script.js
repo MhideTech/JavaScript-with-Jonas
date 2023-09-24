@@ -260,8 +260,8 @@ class CarCl {
     return `${this.speed / 1.6} mi/h`;
   }
 
-  set speedUS(speed){
-    this.speed =  `${speed * 1.6} km/h`;
+  set speedUS(speed) {
+    this.speed = `${speed * 1.6} km/h`;
     return this.speed;
   }
 }
@@ -269,35 +269,34 @@ class CarCl {
 const ford = new CarCl('Ford', 120);
 console.log(ford.speedUS);
 
-
 // Inheritance Between "Classes" => Constructor Function
 // Parent Class
-const PersonIn = function(firstName, birthYear){
-    this.firstName = firstName;
-    this.birthYear = birthYear;
-}
+const PersonIn = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
 
-PersonIn.prototype.calcAge = function(){
-    console.log(2037 - this.birthYear);
-}
+PersonIn.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
 
 // Child Class
-const Student = function(firstName, birthYear, course){
-    // Inheriting firstName and birthYear from PersonIn class
-    Person.call(this, firstName, birthYear);
-    this.course = course;
-}
+const Student = function (firstName, birthYear, course) {
+  // Inheriting firstName and birthYear from PersonIn class
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
 
 // Assigning the prototype of student to be the same as PersonIn.prototype
 Student.prototype = Object.create(PersonIn.prototype);
 
 console.log(Student.__proto__ === PersonIn.prototype);
 
-Student.prototype.introduce = function(){
-    console.log(`My name is ${this.firstName} and I studied ${this.course}`);
-}
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I studied ${this.course}`);
+};
 
-const mike = new Student("Mike", 2020, "Computer Science");
+const mike = new Student('Mike', 2020, 'Computer Science');
 console.log(mike);
 mike.introduce();
 console.log(mike.__proto__);
@@ -305,27 +304,47 @@ console.log(mike.__proto__);
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
 
-
-
 /////////////////////////////////////////////
 // Coding Challenge #3
-const EV = function(make, speed, battery){
-    Car.call(this, make, speed);
-    this.battery = battery;
-}
+const EV = function (make, speed, battery) {
+  Car.call(this, make, speed);
+  this.battery = battery;
+};
 
 EV.prototype = Object.create(Car.prototype);
 
-EV.prototype.chargeBattery = function(chargeTo){
-    this.battery = chargeTo;
-}
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.battery = chargeTo;
+};
 
-EV.prototype.accelerate = function(){
-    this.speed += 20;
-    this.battery -= 1;
-    console.log(`${this.make} going at ${this.speed} km/h with a charge of ${this.battery}%`);
-}
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.battery -= 1;
+  console.log(
+    `${this.make} going at ${this.speed} km/h with a charge of ${this.battery}%`
+  );
+};
 const tesla = new EV('Tesla', 120, 23);
 console.log(tesla);
-tesla.chargeBattery(90)
+tesla.chargeBattery(90);
 tesla.accelerate();
+
+
+// Inheritance Between "Classes" => ES6 Classes
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I studied ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(`I am ${2037 - this.birthYear} years old, but as a student I feel more like ${2037 - this.birthYear + 10}`)
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+martha.calcAge();
