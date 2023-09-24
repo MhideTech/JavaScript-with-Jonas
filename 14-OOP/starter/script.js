@@ -329,8 +329,8 @@ console.log(tesla);
 tesla.chargeBattery(90);
 tesla.accelerate();
 
-
 // Inheritance Between "Classes" => ES6 Classes
+// Reference to PersonCl class in line 128
 class StudentCl extends PersonCl {
   constructor(fullName, birthYear, course) {
     super(fullName, birthYear);
@@ -342,9 +342,36 @@ class StudentCl extends PersonCl {
   }
 
   calcAge() {
-    console.log(`I am ${2037 - this.birthYear} years old, but as a student I feel more like ${2037 - this.birthYear + 10}`)
+    console.log(
+      `I am ${
+        2037 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2037 - this.birthYear + 10
+      }`
+    );
   }
 }
 
 const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
 martha.calcAge();
+
+// Inheritance Between "Classes" => Object.create
+// Reference to PersonCl class in line 216
+
+// creating a new class "StudentProto" and assigning its prototype to be "PersonProto" => Inheritance
+const StudentProto = Object.create(PersonProto);
+
+// creating an init function on "StudentProto" to override "PersonProto"
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function(){
+    console.log(`My name is ${this.firstName} and I studied ${this.course}`);
+}
+
+// creating a new object "jay" and assigning its prototype to be "StudentProto"
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Computer Science');
+jay.introduce();
