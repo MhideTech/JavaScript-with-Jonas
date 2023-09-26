@@ -367,57 +367,77 @@ StudentProto.init = function (firstName, birthYear, course) {
   this.course = course;
 };
 
-StudentProto.introduce = function(){
-    console.log(`My name is ${this.firstName} and I studied ${this.course}`);
-}
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I studied ${this.course}`);
+};
 
 // creating a new object "jay" and assigning its prototype to be "StudentProto"
 const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 
-
 // Another Class Example
 class Account {
-    constructor(owner, currency, pin){
-        this.owner = owner;
-        this.currency = currency;
-        this.locale = navigator.language
-        // Protected property
-        this._pin = pin;
-        this._movements = [];
-        
-        console.log(`Thanks for opening an account ${this.owner}`)     
-    }
+  // Public fields (available on instances not prototype)
+  locale = navigator.language;
 
-    getMovements(){
-        return this._movements
-    }
+  // Private fields (available on instances not prototype)
+  #movements = [];
+  #pin;
 
-    deposit(value) {
-        this._movements.push(value);
-    }
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    // this.locale = navigator.language;
+    // Protected property
+    this.#pin = pin;
+    // this._movements = []
 
-    withdraw(value){
-        this.deposit(-value);
-    }
+    console.log(`Thanks for opening an account ${this.owner}`);
+  }
 
-    _approveLoan(value){
-        return true;
-    }
+  // Public Methods
+  getMovements() {
+    return this.#movements;
+  }
 
-    requestLoan(value){
-        if(this._approveLoan(value)){
-            this.deposit(value);
-            console.log(`Loan Approved`)
-        }
+  deposit(value) {
+    this.#movements.push(value);
+  }
+
+  withdraw(value) {
+    this.deposit(-value);
+  }
+
+  _approveLoan(value) {
+    return true;
+  }
+
+  requestLoan(value) {
+    if (this._approveLoan(value)) {
+      this.deposit(value);
+      console.log(`Loan Approved`);
     }
-    
+  }
+
+  static helper() {
+    console.log('Helper');
+  }
+
+  // Private Methods (not available on JS yet)
+  // #approveLoan(value) {
+  //   return true;
+  // }
 }
 
 const acc1 = new Account('Jonas', 'EUR', 1111);
 acc1.deposit(500);
 acc1.withdraw(250);
-acc1.requestLoan(2000)
+acc1.requestLoan(2000);
 console.log(acc1);
-console.log(acc1.getMovements());
+
+// console.log(acc1.#movements);
+// console.log(acc1.#approveLoan(200))
+Account.helper()
+
+//
