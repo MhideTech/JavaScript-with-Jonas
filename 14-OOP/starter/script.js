@@ -254,6 +254,7 @@ class CarCl {
   brake() {
     this.speed -= 5;
     console.log(`${this.make} is stopping at ${this.speed} km/h`);
+    return this;
   }
 
   get speedUS() {
@@ -441,8 +442,44 @@ console.log(acc1);
 
 // console.log(acc1.#movements);
 // console.log(acc1.#approveLoan(200))
-Account.helper()
+Account.helper();
 
 // Chaining Methods
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 console.log(acc1.getMovements());
+
+// Coding Challenge #4
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.make} going at ${this.speed} km/h with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate();
+
+console.log(rivian.speedUS)
