@@ -18,7 +18,37 @@ navigator.geolocation.getCurrentPosition(
     //   console.log(position);
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log(`https://www.google.com/maps/@${latitude},${longitude},15z?entry=ttu`);
+    console.log(
+      `https://www.google.com/maps/@${latitude},${longitude},15z?entry=ttu`
+    );
+
+    const coords = [latitude, longitude];
+
+    var map = L.map('map').setView(coords, 13);
+    // console.log(map);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    map.on('click', function (mapEvent) {
+      // console.log(mapEvent)
+      const { lat, lng } = mapEvent.latlng;
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(
+          L.popup({
+            maxWidth: 250,
+            minWidth: 100,
+            autoClose: false,
+            closeOnClick: false,
+            className: 'running-popup',
+          })
+        )
+        .setPopupContent('Workout')
+        .openPopup();
+    });
   },
   function () {
     alert('Could not get your position');
