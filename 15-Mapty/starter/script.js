@@ -22,11 +22,7 @@ class App {
     this._getPosition();
 
     // Event listener to display marker whenever form is submitted
-    form.addEventListener('submit', function (e) {
-      
-
-      //   form.classList.add('hidden')
-    });
+    form.addEventListener('submit', this._newWorkout.bind(this));
 
     inputType.addEventListener('change', function () {
       inputElevation
@@ -63,11 +59,7 @@ class App {
 
     // Handling clicks on maps
     // Event listener to show form input whenever a place is clicked on the map
-    this.#map.on('click', function (mapE) {
-      this.#mapEvent = mapE;
-      form.classList.remove('hidden');
-      inputDistance.focus();
-    });
+    this.#map.on('click', this._showForms);
   }
 
   _showForms() {}
