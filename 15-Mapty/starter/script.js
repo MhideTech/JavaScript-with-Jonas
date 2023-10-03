@@ -12,8 +12,6 @@ const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
-let map, mapEvent;
-
 class App {
     #map;
     #mapEvent;
@@ -24,12 +22,7 @@ class App {
     // Event listener to display marker whenever form is submitted
     form.addEventListener('submit', this._newWorkout.bind(this));
 
-    inputType.addEventListener('change', function () {
-      inputElevation
-        .closest('.form__row')
-        .classList.toggle('form__row--hidden');
-      inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
-    });
+    inputType.addEventListener('change', this._toggleElevationField);
   }
 
   _getPosition() {
@@ -59,12 +52,19 @@ class App {
 
     // Handling clicks on maps
     // Event listener to show form input whenever a place is clicked on the map
-    this.#map.on('click', this._showForms);
+    this.#map.on('click', this._showForms.bind(this));
   }
 
-  _showForms() {}
+  _showForms(mapE) {
+    this.#mapEvent = mapE;
+    form.classList.remove('hidden');
+    inputDistance.focus();
+  }
 
-  _toggleElevationField() {}
+  _toggleElevationField() {
+    inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
+    inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+  }
 
   _newWorkout(e) {
     e.preventDefault();
