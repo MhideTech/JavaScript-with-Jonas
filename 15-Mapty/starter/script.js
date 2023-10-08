@@ -274,15 +274,15 @@ class App {
   }
 
   _moveToPopup(e) {
-    const workoutEl = e.target.closest('workout');
-    console.log(workoutEl);
+    const workoutEl = e.target.closest('.workout');
+    // console.log(workoutEl);
 
     if (!workoutEl) return;
 
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    console.log(workout);
+    // console.log(workout);
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
