@@ -326,3 +326,4 @@ class App {
 const app = new App();
 
 // console.log((new Date() + '').slice(-10))
+// Moving to Async
