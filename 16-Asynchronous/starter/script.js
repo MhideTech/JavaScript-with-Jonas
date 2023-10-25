@@ -52,8 +52,7 @@ getCountryData('malta');
 getCountryData('turkey');
 */
 
-
-const renderCountry = function(data, className = ''){
+const renderCountry = function (data, className = '') {
   const html = `
       <article class="country ${className}">
         <img class="country__img" src="${data.flag}" />
@@ -70,9 +69,8 @@ const renderCountry = function(data, className = ''){
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;  
-}
-
+  countriesContainer.style.opacity = 1;
+};
 
 const getCountryAndNeighbour = function (country) {
   const request = new XMLHttpRequest();
@@ -91,20 +89,40 @@ const getCountryAndNeighbour = function (country) {
 
     // Get neighbour country
     const neighbour = data.borders?.[0];
-    console.log(neighbour)
-    if(!data.borders) return;
+    console.log(neighbour);
+    if (!data.borders) return;
     const request2 = new XMLHttpRequest();
     console.log(request2);
     request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);
     request2.send();
 
-    request2.addEventListener('load', function() {
-      console.log(this)
+    request2.addEventListener('load', function () {
+      console.log(this);
       const data2 = JSON.parse(this.responseText);
-      console.log(data2)
-      renderCountry(data2, "neighbour");
+      console.log(data2);
+      renderCountry(data2, 'neighbour');
     });
   });
 };
 
-getCountryAndNeighbour('nigeria');
+getCountryAndNeighbour('canada');
+
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`).then(function (
+//     response
+//   ) {
+//     console.log(response);
+//     return response.json();
+//   }).then(function([data]){
+//     console.log(data);
+//     renderCountry(data)
+//   })
+// };
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => response.json())
+    .then(([data]) => renderCountry(data));
+};
+
+getCountryData('portugal');
