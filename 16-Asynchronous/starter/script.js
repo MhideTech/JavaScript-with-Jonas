@@ -84,7 +84,6 @@ getCountryData('malta');
 getCountryData('turkey');
 */
 
-
 // Get country and neighbour using XMLHttpRequest method
 /*
 const getCountryAndNeighbour = function (country) {
@@ -135,7 +134,6 @@ const getCountryAndNeighbour = function (country) {
 //     renderCountry(data)
 //   })
 // };
-
 
 // const getCountryData = function (country) {
 //   fetch(`https://restcountries.com/v2/name/${country}`)
@@ -188,3 +186,29 @@ btn.addEventListener('click', function () {
   getCountryData('nigeria');
 });
 */
+
+// coding challenge #1
+const whereAmI = function (lat, lng) {
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`).then(res => {
+    if (!res.ok) throw new Error(`Problem with geocoding (${res.status})`)
+    // console.log(res);
+    return res.json();
+  }).then(data => {
+    // console.log(data);
+    console.log(`You are in ${data.city}, ${data.country}`);
+    getJSON(
+      `https://restcountries.com/v2/name/${data.country}`,
+      'Country not found'
+    ).then(data => {
+      // console.log(data)
+      renderCountry(data[0]);
+    });
+  }).catch(err => {
+    // console.error(err)
+    console.log(err.message)
+  }).finally(() => countriesContainer.style.opacity = 1)
+};
+
+whereAmI(52.508, 13.381);
+whereAmI(19.037, 72.873);
+whereAmI(-33.933, 18.474);
