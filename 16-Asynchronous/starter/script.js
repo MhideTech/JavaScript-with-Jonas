@@ -124,29 +124,58 @@ const getCountryAndNeighbour = function (country) {
 //   })
 // };
 
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(errorMsg);
+    return response.json();
+  });
+};
+
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(
+//       response => {
+//         console.log(response);
+
+//         if (!response.ok)
+//           throw new Error(`${response.status}, Country not found`);
+//         return response.json();
+//       }
+//       // err => alert(err)
+//     )
+//     .then(([data]) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders?.[0];
+//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+//     })
+//     .then(
+//       response => response.json()
+//       // err => alert(err)
+//     )
+//     .then(data => renderCountry(data, 'neighbour'))
+//     .catch(err => {
+//       console.error(err);
+//       renderError(`Something went wrong ${err.message}. Try again`);
+//     })
+//     .finally(() => (countriesContainer.style.opacity = 1));
+// };
+
 const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v2/name/${country}`)
-    .then(
-      response => response.json()
-      // err => alert(err)
-    )
-    .then(data => {
+  getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
+    .then((data) => {
       renderCountry(data[0]);
       const neighbour = data[0].borders?.[0];
-      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+      return getJSON(`https://restcountries.com/v2/alpha/${neighbour}`, 'Country not found')
     })
-    .then(
-      response => response.json()
-      // err => alert(err)
-    )
     .then(data => renderCountry(data, 'neighbour'))
     .catch(err => {
       console.error(err);
+      console.error(err.message);
       renderError(`Something went wrong ${err.message}. Try again`);
     })
     .finally(() => (countriesContainer.style.opacity = 1));
 };
 
 btn.addEventListener('click', function () {
-  getCountryData('malta');
+  getCountryData('nigeria');
 });
