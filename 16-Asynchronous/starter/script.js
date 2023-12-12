@@ -28,6 +28,13 @@ const renderError = function (msg) {
   // countriesContainer.style.opacity = 1;
 };
 
+const getJSON = function (url, errorMsg = 'Something went wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(errorMsg);
+    return response.json();
+  });
+};
+
 ///////////////////////////////////////
 /*
 const getCountryData = function (country) {
@@ -77,6 +84,9 @@ getCountryData('malta');
 getCountryData('turkey');
 */
 
+
+// Get country and neighbour using XMLHttpRequest method
+/*
 const getCountryAndNeighbour = function (country) {
   const request = new XMLHttpRequest();
   console.log(request);
@@ -112,6 +122,8 @@ const getCountryAndNeighbour = function (country) {
 
 // getCountryAndNeighbour('canada');
 
+*/
+
 // const getCountryData = function (country) {
 //   fetch(`https://restcountries.com/v2/name/${country}`).then(function (
 //     response
@@ -124,12 +136,6 @@ const getCountryAndNeighbour = function (country) {
 //   })
 // };
 
-const getJSON = function (url, errorMsg = 'Something went wrong') {
-  return fetch(url).then(response => {
-    if (!response.ok) throw new Error(errorMsg);
-    return response.json();
-  });
-};
 
 // const getCountryData = function (country) {
 //   fetch(`https://restcountries.com/v2/name/${country}`)
@@ -160,6 +166,8 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //     .finally(() => (countriesContainer.style.opacity = 1));
 // };
 
+// Throwing errors manually
+/*
 const getCountryData = function (country) {
   getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
     .then((data) => {
@@ -179,3 +187,4 @@ const getCountryData = function (country) {
 btn.addEventListener('click', function () {
   getCountryData('nigeria');
 });
+*/
