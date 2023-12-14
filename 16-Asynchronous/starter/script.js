@@ -217,6 +217,7 @@ whereAmI(-33.933, 18.474);
 
 
 // The event loop in practice
+/*
 console.log('Test start');
 setTimeout(() => console.log('0 sec timer'), 0);
 Promise.resolve('Resolved promise 1').then(res => console.log(res))
@@ -226,3 +227,31 @@ Promise.resolve('Resolved promise 2').then(res => {
   console.log(res);
 });
 console.log('Test end');
+*/
+
+
+// Building a simple promise
+const lotteryPromise = new Promise(function(resolve, reject){
+  console.log('Lottery draw is happening');
+  setTimeout(() => {
+    if(Math.random() >= 0.5){
+      resolve('You WIN 💰');
+    } else{
+      reject(new Error('You lost your money 💩'));
+    }
+  }, 2000);
+});
+// consuming a promise
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// Promisifying setTimeout
+const wait = function(seconds){
+  return new Promise(function(resolve){
+    setTimeout(resolve, seconds * 1000);
+  })
+}
+
+wait(2).then(() => {
+  console.log('I waited for 2 seconds');
+  return wait(1);
+}).then(() => console.log('I waited for 1 second'))
