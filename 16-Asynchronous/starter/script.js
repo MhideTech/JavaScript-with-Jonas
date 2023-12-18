@@ -20,7 +20,7 @@ const renderCountry = function (data, className = '') {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
@@ -303,6 +303,7 @@ btn.addEventListener('click', whereAmI);
 
 
 // Coding Challenge #2
+/*
 const wait = function (seconds) {
   return new Promise(function (resolve) {
     setTimeout(resolve, seconds * 1000);
@@ -348,3 +349,32 @@ createImage('img/img-1.jpg')
     currentImg.style.display = 'none';
   })
   .catch(err => console.error(err));
+*/
+
+
+// Consuming promises with AsyncAwait
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function(){
+  const position = await getPosition();
+  const { latitude: lat, longitude: lng } = position.coords;
+
+  // reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+
+  // country data
+  const res = await fetch(`https://restcountries.com/v2/name/${dataGeo.country}`);
+  console.log(res)
+  const data = await res.json();
+  renderCountry(data[0])
+  console.log(data)
+}
+
+whereAmI();
