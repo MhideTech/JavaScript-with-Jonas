@@ -1,5 +1,6 @@
 // Importing Module
 
+/*
 // Importing named exports
 import { addToCart, totalPrice as price, totalQuantity } from './shoppingCart.js';
 
@@ -27,7 +28,9 @@ console.log(price, totalQuantity);
 */
 
 
+
 // Top-Level await (ES2022);
+/*
 console.log('Start fetching');
 const res = await fetch('https://jsonplaceholder.typicode.com/posts');
 const data = await res.json();
@@ -48,4 +51,34 @@ lastPost.then(last => console.log(last));
 
 // Better alternative
 const lastPost2 = await getLastPost();
-console.log(lastPost2)
+console.log(lastPost2);
+*/
+
+
+// The module pattern
+const ShoppingCart2 = (function() {
+  const cart = [];
+  const shippingCost = 10;
+  const totalPrice = 237;
+  const totalQuantity = 23;
+
+  const addToCart = function (product, quantity) {
+    cart.push({ product, quantity });
+    console.log(`${quantity} ${product} added to cart`);
+  };
+
+  const orderStock = function (product, quantity) {
+    console.log(`${quantity} ${product} ordered from supplier`);
+  };
+
+  return{
+    addToCart,
+    cart, 
+    totalPrice,
+    totalQuantity,
+  };
+})();
+
+ShoppingCart2.addToCart('apple', 4);
+ShoppingCart2.addToCart('pizza', 2);
+console.log(ShoppingCart2.shippingCost) // undefined
