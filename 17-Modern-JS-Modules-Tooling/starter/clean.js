@@ -91,3 +91,17 @@ const logBigExpenses = function (state, bigLimit) {
   console.log(bigExpenses)
 };
 logBigExpenses(newBudget3, 1000);
+
+
+const addIncome = function(state){
+  const income = state.filter(entry => entry.value > 0).map(entry => entry.value).reduce((val, cur) => val += cur, 0)
+  console.log(`Total income is ${income}`)
+}
+
+addIncome(newBudget3);
+
+const totalExpenses = function(state){
+  const expenses = state.filter(entry => entry.value < 0).map(entry => entry.value).reduce((acc, cur) => acc += cur, 0)
+  console.log(`Total expenses is ${expenses}`);
+}
+totalExpenses(newBudget3);
