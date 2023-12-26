@@ -1,4 +1,4 @@
-const budget = [
+const budget = Object.freeze([
   { value: 250, description: 'Sold old TV 📺', user: 'jonas' },
   { value: -45, description: 'Groceries 🥑', user: 'jonas' },
   { value: 3500, description: 'Monthly salary 👩‍💻', user: 'jonas' },
@@ -7,18 +7,22 @@ const budget = [
   { value: -20, description: 'Candy 🍭', user: 'matilda' },
   { value: -125, description: 'Toys 🚂', user: 'matilda' },
   { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
-];
+]);
 
-const spendingLimits = {
+const spendingLimits = Object.freeze({
   jonas: 1500,
   matilda: 100,
-};
+});
 
-const getLimit = user => spendingLimits?.[user] ?? 0;
+spendingLimits.jay = 200; // would not work i.e. spendingLimits can no longer change
+console.log(spendingLimits);
 
-const addExpense = function (value, description, user='jonas') {
+const getLimit = (limits, user) => limits?.[user] ?? 0;
+
+const addExpense = function (state, limits, value, description, user='jonas') {
   // if (!user) user = 'jonas';
-  user = user.toLowerCase();
+  // user = user.toLowerCase();
+  const cleanUser = user.toLowerCase();
 
   // refacturing downward👇
   /* let lim;
@@ -33,18 +37,21 @@ const addExpense = function (value, description, user='jonas') {
 
   // using optional chaining plus nullish coalescing operator
 
-  if (value <= getLimit(user)) {
+  /* if (value <= getLimit(cleanUser)) {
     // budget.push({ value: -value, description: description, user: user });
     // using enhanced object literal syntax
-    budget.push({ value: -value, description, user });
-  }
-};
-addExpense(10, 'Pizza 🍕');
-addExpense(100, 'Going to movies 🍿', 'Matilda');
-addExpense(200, 'Stuff', 'Jay');
-console.log(budget);
+    budget.push({ value: -value, description, user : cleanUser });
+  } */
 
-const check = function () {
+  return value <= getLimit(limits, cleanUser) ? [...state, { value: -value, description, user : cleanUser }] : state;
+};
+const newBudget1  = addExpense(budget, spendingLimits, 10, 'Pizza 🍕');
+console.log(newBudget1)
+const newBudget2  = addExpense(newBudget1, spendingLimits, 100, 'Going to movies 🍿', 'Matilda');
+const newBudget3  = addExpense(newBudget2, spendingLimits, 200, 'Stuff', 'Jay');
+console.log(newBudget2, newBudget3);
+
+const checkExpenses = function (state, limits) {
   for (const entry of budget) {
 
     /*let lim;
@@ -56,24 +63,31 @@ const check = function () {
 
     // const limit = spendingLimits?.[entry.user] ?? 0;
 
-    if (entry.value < -getLimit(entry.user)) {
-      entry.flag = 'limit';
-    }
+    if (entry.value < -getLimit(limits, entry.user)) entry.flag = 'limit';
   }
+
+  state.map(entry => entry.value < -getLimit(limits, entry.user) ? {...entry, flag: 'limit'} : entry )
 };
-check();
+checkExpenses(newBudget3, spendingLimits);
 
 console.log(budget);
 
-const logBigExpenses = function (bigLimit) {
-  let output = '';
-  for (const entry of budget) {
-    if (entry.value <= -bigLimit) {
-      // output += `${entry.description.slice(-2)}  / `; // Emojis are 2 chars
-      output += entry.value <= -bigLimit ? `${entry.description.slice(-2)}  / ` : '';
-    }
-  }
-  output = output.slice(0, -2); // Remove last '/ '
-  console.log(output);
+const logBigExpenses = function (state, bigLimit) {
+  // let output = '';
+  // for (const entry of budget) {
+  //   if (entry.value <= -bigLimit) {
+  //     // output += `${entry.description.slice(-2)}  / `; // Emojis are 2 chars
+  //     output += entry.value <= -bigLimit ? `${entry.description.slice(-2)}  / ` : '';
+  //   }
+  // }
+  // output = output.slice(0, -2); // Remove last '/ '
+  // console.log(output);
+
+  const bigExpenses = state
+    .filter(entry => entry.value <= -bigLimit)
+    .map(entry => entry.description.slice(-2))
+    .join(' / ');
+
+  console.log(bigExpenses)
 };
-logBigExpenses(1000 );
+logBigExpenses(newBudget3, 1000);
